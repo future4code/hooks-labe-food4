@@ -5,9 +5,10 @@ import GlobalStateContext from "../Global/GlobalStateContext"
 
 const GlobalState = (props) => {
 
+    
 
     const data = {
-        
+       
     }
 
 
