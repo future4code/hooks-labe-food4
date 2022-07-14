@@ -1,4 +1,3 @@
-import { useState } from "react";
 import useForm from "../../Hooks/useForm";
 import axios from "axios";
 import { BASE_URL } from "../../Constants/url"
@@ -7,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
     const navigate = useNavigate()
     const [form, onChange, cleanFields] = useForm({email: "", password: ""})
-    const [hasAddress, setHasAddress] = useState("")
 
     const postLogin = (event) => {
         event.preventDefault()
