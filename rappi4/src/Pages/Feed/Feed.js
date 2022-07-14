@@ -1,12 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import GlobalStateContext from "../../Global/GlobalStateContext";
-import styled from "styled-components";
 import Footer from "../../Constants/Footer";
-
-const ImgTam = styled.img`
-    width: 100%;
-    height: 200px;
-`
+import {ImgTam, RestaurantContainer} from './styles'
 
 const Feed = () => {
     const {restaurants, getRestaurants} = useContext(GlobalStateContext)
@@ -25,12 +20,12 @@ const Feed = () => {
     const renderRestaurants = restaurants.map((restaurant) => {
         if (restaurant.category === selectedCategory) {
             return (
-                <div key={restaurant.id}>
+                <RestaurantContainer key={restaurant.id}>
                     <ImgTam src={restaurant.logoUrl}/>
                     <h3>{restaurant.name}</h3>
                     <p>{restaurant.deliveryTime} min</p>
                     <p>Frete R$:{restaurant.shipping},00</p>
-                </div>
+                </RestaurantContainer>
             )
         }
 
