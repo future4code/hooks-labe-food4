@@ -25,7 +25,7 @@ const Feed = () => {
         if (restaurant.category === selectedCategory || restaurant.name === selectedCategory) {
             return (
                 <RestaurantContainer key={restaurant.id} onClick={() => chooseRestaurant(restaurant.id)}>
-                    <ImgTam src={restaurant.logoUrl}/>
+                    <ImgTam src={restaurant.logoUrl} alt="imagem logomarca" />
                     <h3>{restaurant.name}</h3>
                     <p>{restaurant.deliveryTime} min</p>
                     <p>Frete R$:{restaurant.shipping},00</p>
@@ -36,7 +36,7 @@ const Feed = () => {
         else if (selectedCategory === "") {
             return (
                 <RestaurantContainer  key={restaurant.id} onClick={() => chooseRestaurant(restaurant.id)}>
-                    <ImgTam src={restaurant.logoUrl}/>
+                    <ImgTam src={restaurant.logoUrl} alt="imagem logomarca" />
                     <h3>{restaurant.name}</h3>
                     <p>{restaurant.deliveryTime} min</p>
                     <p>Frete R$:{restaurant.shipping},00</p>

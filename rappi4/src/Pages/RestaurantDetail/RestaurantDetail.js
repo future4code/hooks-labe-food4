@@ -21,7 +21,7 @@ const RestaurantDetail = () => {
         if (restaurant.id === id) {
             return (
                 <div key={restaurant.id}>
-                    <ImgTest src={restaurant.logoUrl}/>
+                    <ImgTest src={restaurant.logoUrl} alt="imagem logomarca" />
                     <h3>{restaurant.name}</h3>
                     <p>{restaurant.category}</p>
                     <p>{restaurant.deliveryTime} min</p>
@@ -35,7 +35,7 @@ const RestaurantDetail = () => {
         if (product.category !== "Acompanhamento" && product.category !== "Bebida") {
             return (
                 <div key={product.id}>
-                    <ImgTest src={product.photoUrl}/>
+                    <ImgTest src={product.photoUrl} alt="imagem produto" />
                     <h3>{product.name}</h3>
                     <p>{product.description}</p>
                     <p>{product.price}</p>
@@ -48,7 +48,7 @@ const RestaurantDetail = () => {
         if (product.category === "Acompanhamento") {
             return (
                 <div key={product.id}>
-                    <ImgTest src={product.photoUrl}/>
+                    <ImgTest src={product.photoUrl} alt="imagem produto" />
                     <h3>{product.name}</h3>
                     <p>{product.description}</p>
                     <p>{product.price}</p>
@@ -61,7 +61,7 @@ const RestaurantDetail = () => {
         if (product.category === "Bebida") {
             return (
                 <div key={product.id}>
-                    <ImgTest src={product.photoUrl}/>
+                    <ImgTest src={product.photoUrl} alt="imagem produto" />
                     <h3>{product.name}</h3>
                     <p>{product.description}</p>
                     <p>{product.price}</p>
