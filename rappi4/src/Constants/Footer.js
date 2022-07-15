@@ -22,9 +22,9 @@ const Footer = () => {
     const navigate = useNavigate()
     return (
         <FooterStyled>
-            <FooterImg onClick={() => navigate("/feed")} src={homepage}/>
-            <FooterImg onClick={""} src={shoppingcart}/>
-            <FooterImg onClick={""} src={avatar}/>
+            <FooterImg onClick={() => navigate("/feed")} src={homepage} alt="icone home" />
+            <FooterImg onClick={""} src={shoppingcart} alt="icone carrinho" />
+            <FooterImg onClick={""} src={avatar} alt="icone avatar" />
         </FooterStyled>
     )
 }
