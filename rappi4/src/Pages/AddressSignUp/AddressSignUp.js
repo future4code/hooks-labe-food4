@@ -2,8 +2,10 @@ import useForm from "../../Hooks/useForm";
 import axios from "axios";
 import { BASE_URL } from "../../Constants/url"
 import { useNavigate } from "react-router-dom";
+import { useProtectedPage } from "../../Hooks/useProtectedPage";
 
 const AddressSignUp = () => {
+    useProtectedPage()
     const navigate = useNavigate()
     const [form, onChange, cleanFields] = useForm({street: "", number: "", neighbourhood: "", city: "", state: "", complement: ""})
     

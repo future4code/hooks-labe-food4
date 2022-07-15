@@ -2,6 +2,7 @@ import styled from "styled-components";
 import avatar from "../Assets/avatar.png"
 import homepage from "../Assets/homepage.png"
 import shoppingcart from "../Assets/shopping-cart.png"
+import { useNavigate } from "react-router-dom"
 
 const FooterStyled = styled.footer`
     display: flex;
@@ -18,13 +19,16 @@ const FooterImg = styled.img`
     cursor: pointer;
 `
 const Footer = () => {
+    const navigate = useNavigate()
     return (
         <FooterStyled>
-            <FooterImg src={homepage}/>
-            <FooterImg src={shoppingcart}/>
-            <FooterImg src={avatar}/>
+            <FooterImg onClick={() => navigate("/feed")} src={homepage}/>
+            <FooterImg onClick={""} src={shoppingcart}/>
+            <FooterImg onClick={""} src={avatar}/>
         </FooterStyled>
     )
 }
 
 export default Footer;
+
+
