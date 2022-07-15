@@ -2,8 +2,12 @@ import { useContext, useEffect, useState } from "react";
 import GlobalStateContext from "../../Global/GlobalStateContext";
 import Footer from "../../Constants/Footer";
 import {ImgTam, RestaurantContainer} from './styles'
+import { useProtectedPage } from "../../Hooks/useProtectedPage";
+import { useNavigate } from "react-router-dom";
 
 const Feed = () => {
+    useProtectedPage()
+    const navigate = useNavigate()
     const {restaurants, getRestaurants} = useContext(GlobalStateContext)
     const [selectedCategory, setSelectedCategory] = useState("")
     
@@ -18,9 +22,9 @@ const Feed = () => {
     })
 
     const renderRestaurants = restaurants.map((restaurant) => {
-        if (restaurant.category === selectedCategory) {
+        if (restaurant.category === selectedCategory || restaurant.name === selectedCategory) {
             return (
-                <RestaurantContainer key={restaurant.id}>
+                <RestaurantContainer key={restaurant.id} onClick={() => chooseRestaurant(restaurant.id)}>
                     <ImgTam src={restaurant.logoUrl}/>
                     <h3>{restaurant.name}</h3>
                     <p>{restaurant.deliveryTime} min</p>
@@ -31,12 +35,12 @@ const Feed = () => {
 
         else if (selectedCategory === "") {
             return (
-                <div key={restaurant.id}>
+                <RestaurantContainer  key={restaurant.id} onClick={() => chooseRestaurant(restaurant.id)}>
                     <ImgTam src={restaurant.logoUrl}/>
                     <h3>{restaurant.name}</h3>
                     <p>{restaurant.deliveryTime} min</p>
                     <p>Frete R$:{restaurant.shipping},00</p>
-                </div>
+                </RestaurantContainer>
             )
         }
     })
@@ -44,6 +48,10 @@ const Feed = () => {
     const onChangeCategory = (event) => {
         setSelectedCategory(event.target.value)
     } 
+
+    const chooseRestaurant = (param) => {
+        navigate(`/feed/restaurante/${param}`)
+    }
 
     return (
         <div>
