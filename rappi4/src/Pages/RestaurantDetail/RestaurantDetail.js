@@ -38,7 +38,7 @@ const RestaurantDetail = () => {
                     <ImgTest src={product.photoUrl} alt="imagem produto" />
                     <h3>{product.name}</h3>
                     <p>{product.description}</p>
-                    <p>{product.price}</p>
+                    <p>R$ {product.price}</p>
                     <button onClick={() => addProduct(product, id)}>Adicionar</button>
                 </div>
         )}    
@@ -51,7 +51,7 @@ const RestaurantDetail = () => {
                     <ImgTest src={product.photoUrl} alt="imagem produto" />
                     <h3>{product.name}</h3>
                     <p>{product.description}</p>
-                    <p>{product.price}</p>
+                    <p>R$ {product.price}</p>
                     <button onClick={() => addProduct(product)}>Adicionar</button>
                 </div>
         )} 
@@ -64,7 +64,7 @@ const RestaurantDetail = () => {
                     <ImgTest src={product.photoUrl} alt="imagem produto" />
                     <h3>{product.name}</h3>
                     <p>{product.description}</p>
-                    <p>{product.price}</p>
+                    <p>R$ {product.price}</p>
                     <button onClick={() => addProduct(product)}>Adicionar</button>
                 </div>
         )} 
