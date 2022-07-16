@@ -39,7 +39,7 @@ const RestaurantDetail = () => {
                     <h3>{product.name}</h3>
                     <p>{product.description}</p>
                     <p>{product.price}</p>
-                    <button onClick={() => addProduct(product)}>Adicionar</button>
+                    <button onClick={() => addProduct(product, id)}>Adicionar</button>
                 </div>
         )}    
     })

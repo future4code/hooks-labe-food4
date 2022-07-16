@@ -4,9 +4,26 @@ import axios from "axios";
 import GlobalStateContext from "../Global/GlobalStateContext"
 
 const GlobalState = (props) => {
+    const [profile, setProfile] = useState([])
     const [restaurants, setRestaurants] = useState([])
     const [restaurantDetails, setRestaurantDetails] = useState([])
     const [cart, setCart] = useState([])
+
+    // Requisição pegar perfil 
+    const getProfile = () => {
+        const headers = {headers : {auth : localStorage.getItem("token")}}
+
+        axios
+            .get(`${BASE_URL}profile`, headers)
+
+            .then((response) => {
+                setProfile(response.data.user)
+            })
+
+            .catch((error) => {
+                console.log(error.message)
+            })
+    }
 
     // Requisição pegar restaurantes
     const getRestaurants = () => {
@@ -40,8 +57,32 @@ const GlobalState = (props) => {
             })
     }
 
+    // Requisição enviar pedido
+    const postPlaceOrder = (restaurantId, method) => {
+        const headers = {headers : {auth : localStorage.getItem("token")}}
+
+        const body = {
+            products: cart.map((product) => {
+                return {
+                    id: product.id,
+                    quantity: product.quantity
+                }
+            }),
+            paymentMethod: method
+        }
+        
+        axios
+            .post(`${BASE_URL}restaurants/${restaurantId}/order`, body, headers)
+
+            .then(() => {alert("Compra confirmada :)")})
+
+            .catch((error) => {
+                console.log(error.message)
+            })
+    }
+
     // Função Adicionar produto ao carrinho
-    const addProduct = (product) => {
+    const addProduct = (product, restaurantId) => {
         const index = cart.findIndex((cartProduct) => {
             if (cartProduct.id === product.id) {
                 return true
@@ -71,6 +112,30 @@ const GlobalState = (props) => {
                 setCart(newCart)
                 alert("Mais um item adicionado ao carrinho")
         }
+
+        localStorage.setItem("restaurantId", restaurantId)
+    }
+
+    // Função remover produto do carrinho
+    const removeProduct = (product) => {
+        const newCart = cart.map((cartProduct) => {
+            if (cartProduct.id === product.id) {
+                return {
+                    ...cartProduct, quantity: cartProduct.quantity - 1
+            }}
+
+            else { return cartProduct }
+        })
+        
+        .filter((cartProduct) => {
+            if (cartProduct.quantity < 1) {
+                return false
+            }
+
+            else { return true }
+        })
+
+        setCart(newCart)
     }
     
     const data = {
@@ -78,17 +143,22 @@ const GlobalState = (props) => {
         restaurants,
         restaurantDetails,
         cart,
+        profile,
        
         // Set States
         setCart,
         setRestaurants,
         
         // Request
+        getProfile,
         getRestaurants,
         getRestaurantDetail,
+        postPlaceOrder,
+        
 
         // Functions
-        addProduct
+        addProduct,
+        removeProduct
     }
 
     return (
