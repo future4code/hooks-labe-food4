@@ -4,6 +4,7 @@ import SignUp from "../Pages/SignUp/SignUp"
 import AddressSignUp from "../Pages/AddressSignUp/AddressSignUp"
 import Feed from "../Pages/Feed/Feed"
 import RestaurantDetail from "../Pages/RestaurantDetail/RestaurantDetail"
+import Cart from "../Pages/Cart/Cart"
 
 const Router = () => {
     return (
@@ -14,7 +15,7 @@ const Router = () => {
                 <Route path="/cadastro-de-endereco" element={<AddressSignUp/>}/>
                 <Route path="/feed" element={<Feed/>}/>
                 <Route path="/feed/restaurante/:id" element={<RestaurantDetail/>}/>
-                <Route/>
+                <Route path="/carrinho" element={<Cart/>}/>
                 <Route/>
             </Routes>
         </BrowserRouter>

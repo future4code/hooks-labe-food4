@@ -11,7 +11,7 @@ const ImgTest = styled.img`
 
 const RestaurantDetail = () => {
     useProtectedPage()
-    const {restaurants, getRestaurants, restaurantDetails, getRestaurantDetail} = useContext(GlobalStateContext)
+    const {restaurants, getRestaurants, restaurantDetails, getRestaurantDetail, addProduct} = useContext(GlobalStateContext)
     const {id} = useParams()
     
     useEffect(() => {getRestaurants()}, [])
@@ -39,7 +39,7 @@ const RestaurantDetail = () => {
                     <h3>{product.name}</h3>
                     <p>{product.description}</p>
                     <p>{product.price}</p>
-                    <button>Adicionar</button>
+                    <button onClick={() => addProduct(product)}>Adicionar</button>
                 </div>
         )}    
     })
@@ -52,7 +52,7 @@ const RestaurantDetail = () => {
                     <h3>{product.name}</h3>
                     <p>{product.description}</p>
                     <p>{product.price}</p>
-                    <button>Adicionar</button>
+                    <button onClick={() => addProduct(product)}>Adicionar</button>
                 </div>
         )} 
     })
@@ -65,7 +65,7 @@ const RestaurantDetail = () => {
                     <h3>{product.name}</h3>
                     <p>{product.description}</p>
                     <p>{product.price}</p>
-                    <button>Adicionar</button>
+                    <button onClick={() => addProduct(product)}>Adicionar</button>
                 </div>
         )} 
     })
