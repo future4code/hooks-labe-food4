@@ -7,10 +7,12 @@ import { useProtectedPage } from "../../Hooks/useProtectedPage";
 const ImgTest = styled.img`
     width: 50%;
 `
-
+const DivButtonsAdd = styled.div`
+    display: flex;
+`
 const Cart = () => {
     useProtectedPage()
-    const { profile, getProfile, restaurants, getRestaurants, cart, removeProduct, postPlaceOrder } = useContext(GlobalStateContext)
+    const { profile, getProfile, restaurants, getRestaurants, cart, removeProduct, postPlaceOrder, addMoreProduct, removeMoreProduct } = useContext(GlobalStateContext)
     const [paymentMethod, setPaymentMethod] = useState("")
 
     useEffect(() => {getProfile()}, [])
@@ -43,7 +45,11 @@ const Cart = () => {
                 <p>{product.name}</p>
                 <p>{product.description}</p>
                 <p>{product.price}</p>
-                <p>{product.quantity}</p>
+                <DivButtonsAdd>
+                    <button onClick={() => removeMoreProduct(product)}>-</button>
+                    <p>{product.quantity}</p>
+                    <button onClick={() => addMoreProduct(product)}>+</button>
+                </DivButtonsAdd>
                 <button onClick={() => removeProduct(product)}>Remover</button>
             </div>
         )
