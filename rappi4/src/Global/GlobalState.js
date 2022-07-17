@@ -9,6 +9,7 @@ const GlobalState = (props) => {
     const [restaurantDetails, setRestaurantDetails] = useState([])
     const [cart, setCart] = useState([])
     const [activeOrder, setActiveOrder] = useState([])
+    const [orderHistory, setOrderHistory] = useState([])
 
     // Requisição pegar perfil 
     const getProfile = () => {
@@ -90,7 +91,8 @@ const GlobalState = (props) => {
     const getActiveOrder = () => {
         const headers = {headers : {auth : localStorage.getItem("token")}}
 
-        axios.get(`${BASE_URL}active-order`, headers)
+        axios
+            .get(`${BASE_URL}active-order`, headers)
 
         .then((response) => {
             setActiveOrder(response.data.order)
@@ -100,6 +102,23 @@ const GlobalState = (props) => {
             console.log(error.message)
         })
     }
+
+    // Requisição para pegar histórico de pedidos
+    const ordersHistory = () => {
+        const headers = {headers : {auth : localStorage.getItem("token")}}
+
+        axios
+            .get(`${BASE_URL}orders/history`, headers)
+
+        .then((response) => {
+            setOrderHistory(response.data.orders)
+        })
+
+        .catch((error) => {
+            console.log(error)
+        })
+    }
+
 
     // Função Adicionar produto ao carrinho
     const addProduct = (product, restaurantId) => {
@@ -136,12 +155,12 @@ const GlobalState = (props) => {
         localStorage.setItem("restaurantId", restaurantId)
     }
 
-    // Função remover produto do carrinho
+    // Função remover todos produtos do carrinho
     const removeProduct = (product) => {
         const newCart = cart.map((cartProduct) => {
             if (cartProduct.id === product.id) {
                 return {
-                    ...cartProduct, quantity: cartProduct.quantity - 1 
+                    ...cartProduct, quantity: cartProduct.quantity === 0 
             }}
 
             else { return cartProduct }
@@ -158,6 +177,28 @@ const GlobalState = (props) => {
         setCart(newCart)
     }
     
+    // Função adicionar mais produtos ao carrinho
+    const addMoreProduct = (product) => {
+        const newCart = cart.map((cartProduct) => {
+            if (cartProduct.id === product.id) {
+                return {
+                    ...cartProduct, quantity: cartProduct.quantity  + 1
+            }}
+
+            else { return cartProduct }
+        })
+        
+        .filter((cartProduct) => {
+            if (cartProduct.quantity < 1) {
+                return false
+            }
+
+            else { return true }
+        })
+
+        setCart(newCart)
+    }
+
     const data = {
         // States
         restaurants,
@@ -165,6 +206,7 @@ const GlobalState = (props) => {
         cart,
         profile,
         activeOrder,
+        orderHistory,
        
         // Set States
         setCart,
@@ -176,6 +218,7 @@ const GlobalState = (props) => {
         getRestaurantDetail,
         postPlaceOrder,
         getActiveOrder,
+        ordersHistory,
         
 
         // Functions

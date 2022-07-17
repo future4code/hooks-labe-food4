@@ -6,6 +6,7 @@ import Feed from "../Pages/Feed/Feed"
 import RestaurantDetail from "../Pages/RestaurantDetail/RestaurantDetail"
 import Cart from "../Pages/Cart/Cart"
 import Profile from "../Pages/Profile/Profile"
+import UpdateProfile from "../Pages/UpdateProfile/UpdateProfile"
 
 const Router = () => {
     return (
@@ -18,6 +19,7 @@ const Router = () => {
                 <Route path="/feed/restaurante/:id" element={<RestaurantDetail/>}/>
                 <Route path="/carrinho" element={<Cart/>}/>
                 <Route path="/perfil" element={<Profile/>}/>
+                <Route path="/perfil/atualizar-perfil" element={<UpdateProfile/>}/>
             </Routes>
         </BrowserRouter>
     )
