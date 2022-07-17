@@ -177,17 +177,31 @@ const GlobalState = (props) => {
         setCart(newCart)
     }
     
-    // Função adicionar mais produtos ao carrinho
+    // Função adicionar mais um produto ao carrinho
     const addMoreProduct = (product) => {
         const newCart = cart.map((cartProduct) => {
             if (cartProduct.id === product.id) {
                 return {
-                    ...cartProduct, quantity: cartProduct.quantity  + 1
+                    ...cartProduct, quantity: cartProduct.quantity + 1
             }}
 
             else { return cartProduct }
         })
-        
+   
+        setCart(newCart)
+    }
+
+    // Função remover um produto do carrinho
+    const removeMoreProduct = (product) => {
+        const newCart = cart.map((cartProduct) => {
+            if (cartProduct.id === product.id) {
+                return {
+                    ...cartProduct, quantity: cartProduct.quantity - 1
+            }}
+
+            else { return cartProduct }
+        })
+   
         .filter((cartProduct) => {
             if (cartProduct.quantity < 1) {
                 return false
@@ -195,7 +209,7 @@ const GlobalState = (props) => {
 
             else { return true }
         })
-
+        
         setCart(newCart)
     }
 
@@ -220,10 +234,11 @@ const GlobalState = (props) => {
         getActiveOrder,
         ordersHistory,
         
-
         // Functions
         addProduct,
-        removeProduct
+        removeProduct,
+        addMoreProduct,
+        removeMoreProduct
     }
 
     return (
