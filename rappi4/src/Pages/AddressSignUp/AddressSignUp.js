@@ -19,12 +19,17 @@ const AddressSignUp = () => {
         axios 
             .put(`${BASE_URL}address`, form, headers)
             .then((response) => {
-                if (window.confirm("Endereço cadastrado com sucesso!")) { navigate("/feed") }
+                if (window.confirm("Endereço cadastrado com sucesso!")) { 
+                    localStorage.setItem("token", response.data.token)
+                    navigate("/feed")
+
+                }
                 cleanFields()
             })
             
             .catch((error) => {
                 console.log(error.message)
+                alert("Algo deu errado :(")
                 cleanFields()   
             })
     }

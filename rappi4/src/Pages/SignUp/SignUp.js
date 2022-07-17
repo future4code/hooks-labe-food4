@@ -13,10 +13,13 @@ const SignUp = () => {
         axios
             .post(`${BASE_URL}signup`, form)
             .then((response) => {
+                alert("Conta cadastrada com sucesso")
                 localStorage.setItem("token", response.data.token)
+                navigate("/cadastro-de-endereco")
                 cleanFields() 
             })
             .catch((error) => {
+                alert("Algo deu errado :(")
                 console.log(error.message)
     })}
 
@@ -28,7 +31,6 @@ const SignUp = () => {
         event.preventDefault()
         if (form.password === secondPass) {
             postSignUp()
-            navigate("/cadastro-de-endereco")
         }
         else {
             alert("As senhas não são identicas")

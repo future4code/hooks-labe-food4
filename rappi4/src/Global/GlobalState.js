@@ -8,6 +8,7 @@ const GlobalState = (props) => {
     const [restaurants, setRestaurants] = useState([])
     const [restaurantDetails, setRestaurantDetails] = useState([])
     const [cart, setCart] = useState([])
+    const [activeOrder, setActiveOrder] = useState([])
 
     // Requisição pegar perfil 
     const getProfile = () => {
@@ -57,7 +58,7 @@ const GlobalState = (props) => {
             })
     }
 
-    // Requisição enviar pedido
+    // Requisição para enviar pedido
     const postPlaceOrder = (restaurantId, method) => {
         const headers = {headers : {auth : localStorage.getItem("token")}}
 
@@ -74,11 +75,30 @@ const GlobalState = (props) => {
         axios
             .post(`${BASE_URL}restaurants/${restaurantId}/order`, body, headers)
 
-            .then(() => {alert("Compra confirmada :)")})
+            .then(() => {
+                alert("Compra confirmada :)") 
+                setCart([])
+                localStorage.removeItem("restaurantId")              
+            })
 
             .catch((error) => {
                 console.log(error.message)
             })
+    }
+
+    // Requisição para pegar pedido ativo
+    const getActiveOrder = () => {
+        const headers = {headers : {auth : localStorage.getItem("token")}}
+
+        axios.get(`${BASE_URL}active-order`, headers)
+
+        .then((response) => {
+            setActiveOrder(response.data.order)
+        })
+
+        .catch((error) => {
+            console.log(error.message)
+        })
     }
 
     // Função Adicionar produto ao carrinho
@@ -121,7 +141,7 @@ const GlobalState = (props) => {
         const newCart = cart.map((cartProduct) => {
             if (cartProduct.id === product.id) {
                 return {
-                    ...cartProduct, quantity: cartProduct.quantity - 1
+                    ...cartProduct, quantity: cartProduct.quantity - 1 
             }}
 
             else { return cartProduct }
@@ -144,6 +164,7 @@ const GlobalState = (props) => {
         restaurantDetails,
         cart,
         profile,
+        activeOrder,
        
         // Set States
         setCart,
@@ -154,6 +175,7 @@ const GlobalState = (props) => {
         getRestaurants,
         getRestaurantDetail,
         postPlaceOrder,
+        getActiveOrder,
         
 
         // Functions

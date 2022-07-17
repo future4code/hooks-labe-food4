@@ -24,7 +24,7 @@ const Cart = () => {
         }
         return cartTotalPrice
     }
-
+ 
     const renderAddress = restaurants.map((restaurant) => {
         if (restaurant.id === localStorage.getItem("restaurantId")) {
             return (
@@ -80,14 +80,14 @@ const Cart = () => {
                     type="radio"
                     name="form-pag"
                 />
-                <label for="money" onClick={() => setPaymentMethod("money")}> Dinheiro </label>
+                <label htmlFor="money" onClick={() => setPaymentMethod("money")}> Dinheiro </label>
                 
                 <input 
                     id="creditcard"
                     type="radio"
                     name="form-pag"
                 />
-                <label for="creditcard" onClick={() => setPaymentMethod("creditcard")}> Cartão de crédito </label>
+                <label htmlFor="creditcard" onClick={() => setPaymentMethod("creditcard")}> Cartão de crédito </label>
             </form>
 
             <button onClick={() => postPlaceOrder(localStorage.getItem("restaurantId"), paymentMethod)}>Confirmar</button>
