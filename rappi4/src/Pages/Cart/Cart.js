@@ -22,7 +22,7 @@ const Cart = () => {
         for (let item of cart) {
             cartTotalPrice += (item.price * item.quantity)
         }
-        return cartTotalPrice
+        return cartTotalPrice.toFixed(2)
     }
  
     const renderAddress = restaurants.map((restaurant) => {
