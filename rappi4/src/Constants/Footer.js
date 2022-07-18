@@ -10,13 +10,17 @@ import shoppingcartActived from "../Assets/shopping-cartactived.png"
 import { useNavigate } from "react-router-dom"
 import styled from "styled-components";
 
+const Container = styled.div`
+    margin-top: 7vh;
+`
+
 const FooterStyled = styled.footer`
     display: flex;
     width: 100%;
     justify-content: space-around;
     padding-top: 10px;
     padding-bottom: 5px;
-    position: sticky;
+    position: fixed;
     bottom: 0;
     background-color: #ffff;
     border-top: 1px solid #C8C8C8;
@@ -35,29 +39,35 @@ const Footer = () => {
     switch(localStorage.getItem("page")) {
         default : 
             return (
-                <FooterStyled>
-                    <FooterImg src={homepageActived} onClick={() => changeCurrentPage("home", "/feed")} alt="icone home"/>
-                    <FooterImg src={shoppingcart} onClick={() => changeCurrentPage("cart", "/carrinho")}  alt="icone carrinho"/>
-                    <FooterImg src={avatar} onClick={() => changeCurrentPage("profile", "/perfil")}  alt="icone perfil"/>
-                </FooterStyled>
+                <Container>
+                    <FooterStyled>
+                        <FooterImg src={homepageActived} onClick={() => changeCurrentPage("home", "/feed")} alt="icone home"/>
+                        <FooterImg src={shoppingcart} onClick={() => changeCurrentPage("cart", "/carrinho")}  alt="icone carrinho"/>
+                        <FooterImg src={avatar} onClick={() => changeCurrentPage("profile", "/perfil")}  alt="icone perfil"/>
+                    </FooterStyled>
+                </Container>
             )
 
         case "cart" :
             return (
-                <FooterStyled>
-                    <FooterImg src={homepage} onClick={() => changeCurrentPage("home", "/feed")} alt="icone home"/>
-                    <FooterImg src={shoppingcartActived} onClick={() => changeCurrentPage("cart", "/carrinho")}  alt="icone carrinho"/>
-                    <FooterImg src={avatar} onClick={() => changeCurrentPage("profile", "/perfil")}  alt="icone perfil"/>
-                </FooterStyled>
+                <Container>
+                    <FooterStyled>
+                        <FooterImg src={homepage} onClick={() => changeCurrentPage("home", "/feed")} alt="icone home"/>
+                        <FooterImg src={shoppingcartActived} onClick={() => changeCurrentPage("cart", "/carrinho")}  alt="icone carrinho"/>
+                        <FooterImg src={avatar} onClick={() => changeCurrentPage("profile", "/perfil")}  alt="icone perfil"/>
+                    </FooterStyled>
+                </Container>
             )
 
         case "profile" : 
             return (
-                <FooterStyled>
-                    <FooterImg src={homepage} onClick={() => changeCurrentPage("home", "/feed")} alt="icone home"/>
-                    <FooterImg src={shoppingcart} onClick={() => changeCurrentPage("cart", "/carrinho")}  alt="icone carrinho"/>
-                    <FooterImg src={avatarActived} onClick={() => changeCurrentPage("profile", "/perfil")}  alt="icone perfil"/>
-                </FooterStyled>
+                <Container>
+                    <FooterStyled>
+                        <FooterImg src={homepage} onClick={() => changeCurrentPage("home", "/feed")} alt="icone home"/>
+                        <FooterImg src={shoppingcart} onClick={() => changeCurrentPage("cart", "/carrinho")}  alt="icone carrinho"/>
+                        <FooterImg src={avatarActived} onClick={() => changeCurrentPage("profile", "/perfil")}  alt="icone perfil"/>
+                    </FooterStyled>
+                </Container>
             )
     }
 }

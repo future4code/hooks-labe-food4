@@ -70,6 +70,12 @@ const RestaurantDetail = () => {
         )} 
     })
 
+    const test  = () => {
+        return <div>
+            <p>hahaha</p>
+        </div>
+    }
+
     return (
         <div>
             <h1>Result</h1>
@@ -80,7 +86,9 @@ const RestaurantDetail = () => {
             {renderSideDish}
             <h2>Bebidas</h2>
             {renderDrinks}
+            
             <Footer/>
+            
         </div>
     )
 }

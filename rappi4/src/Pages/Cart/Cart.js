@@ -3,6 +3,7 @@ import GlobalStateContext from "../../Global/GlobalStateContext";
 import Footer from "../../Constants/Footer";
 import styled from "styled-components";
 import { useProtectedPage } from "../../Hooks/useProtectedPage";
+import { Button } from "@mui/material";
 
 const ImgTest = styled.img`
     width: 50%;
@@ -17,7 +18,7 @@ const Cart = () => {
 
     useEffect(() => {getProfile()}, [])
     useEffect(() => {getRestaurants()}, [])
- 
+
     const sumTotalCart = (param) => {
         let cartTotalPrice = param
 
@@ -25,6 +26,11 @@ const Cart = () => {
             cartTotalPrice += (item.price * item.quantity)
         }
         return cartTotalPrice.toFixed(2)
+    }
+
+    const delLocalRes = () => {
+        localStorage.removeItem('restaurantId')
+        return <p>Carrinho vazio 😭</p>
     }
  
     const renderAddress = restaurants.map((restaurant) => {
@@ -65,16 +71,16 @@ const Cart = () => {
         )}
     })
 
+    console.log(cart)
     return (
         <div>
             <h1>Cart</h1>
-            
             <h3>Endereço de entrega</h3>
             <p>{profile.address}</p>
             <br></br>
             {renderAddress}
             <br></br>
-            {renderCart}
+            {cart.length > 0 ? renderCart : delLocalRes()}
             <br></br>
             {renderShipping}
             <br></br>
@@ -96,8 +102,7 @@ const Cart = () => {
                 <label htmlFor="creditcard" onClick={() => setPaymentMethod("creditcard")}> Cartão de crédito </label>
             </form>
 
-            <button onClick={() => postPlaceOrder(localStorage.getItem("restaurantId"), paymentMethod)}>Confirmar</button>
-
+            <Button color="primary" variant="contained" onClick={() => postPlaceOrder(localStorage.getItem("restaurantId"), paymentMethod)}>Confirmar</Button>
            <Footer/>
         </div>
     )

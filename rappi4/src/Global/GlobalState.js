@@ -119,7 +119,6 @@ const GlobalState = (props) => {
         })
     }
 
-
     // Função Adicionar produto ao carrinho
     const addProduct = (product, restaurantId) => {
         const index = cart.findIndex((cartProduct) => {
@@ -136,7 +135,6 @@ const GlobalState = (props) => {
             }
             const newCart = [...cart, setProduct]
             setCart(newCart)
-            alert("Produto adicionado ao carrinho")
         }
 
         else {
