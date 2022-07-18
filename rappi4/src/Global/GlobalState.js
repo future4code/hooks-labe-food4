@@ -10,6 +10,7 @@ const GlobalState = (props) => {
     const [cart, setCart] = useState([])
     const [activeOrder, setActiveOrder] = useState([])
     const [orderHistory, setOrderHistory] = useState([])
+    const [alertStatus, setAlertStatus] = useState(false)
 
     // Requisição pegar perfil 
     const getProfile = () => {
@@ -119,7 +120,6 @@ const GlobalState = (props) => {
         })
     }
 
-
     // Função Adicionar produto ao carrinho
     const addProduct = (product, restaurantId) => {
         const index = cart.findIndex((cartProduct) => {
@@ -136,7 +136,14 @@ const GlobalState = (props) => {
             }
             const newCart = [...cart, setProduct]
             setCart(newCart)
-            alert("Produto adicionado ao carrinho")
+            // Setando tempo do alert na tela
+            setTimeout(() => {
+                setAlertStatus(true)
+            }, 1)
+
+            setTimeout(() => {
+                setAlertStatus(false)
+            }, 3000) 
         }
 
         else {
@@ -221,10 +228,12 @@ const GlobalState = (props) => {
         profile,
         activeOrder,
         orderHistory,
+        alertStatus,
        
         // Set States
         setCart,
         setRestaurants,
+        setAlertStatus,
         
         // Request
         getProfile,
