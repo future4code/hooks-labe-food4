@@ -18,7 +18,6 @@ const RestaurantDetail = () => {
     useEffect(() => {getRestaurants()}, [])
     useEffect(() => {getRestaurantDetail(id)}, [])
 
-
     const renderDetailsRestaurant = restaurants.map((restaurant) => {
         if (restaurant.id === id) {
             return (
@@ -72,16 +71,10 @@ const RestaurantDetail = () => {
         )} 
     })
 
-    const test  = () => {
-        return <div>
-            <p>hahaha</p>
-        </div>
-    }
-
     return (
         <div>
             <div>
-                {alertStatus === true ? <AlertSuccess/> : console.log("hue")}
+                {alertStatus && <AlertSuccess/> }
             </div>
             <h1>Result</h1>
             {renderDetailsRestaurant}
@@ -91,9 +84,7 @@ const RestaurantDetail = () => {
             {renderSideDish}
             <h2>Bebidas</h2>
             {renderDrinks}
-            
-            <Footer/>
-            
+            <Footer/>          
         </div>
     )
 }

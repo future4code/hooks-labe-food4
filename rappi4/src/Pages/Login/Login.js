@@ -2,6 +2,7 @@ import useForm from "../../Hooks/useForm";
 import axios from "axios";
 import { BASE_URL } from "../../Constants/url"
 import { useNavigate } from "react-router-dom";
+import { Button } from "@mui/material";
 
 const Login = () => {
     const navigate = useNavigate()
@@ -49,9 +50,9 @@ const Login = () => {
                     type="password"
                     required 
                 />
-                <button>Entrar</button>
+                <Button type="submit" color="primary" variant="outlined">Entrar</Button>
             </form>
-            <button onClick={() => navigate("/cadastro")}>Não possui cadastro? Clique <b>aqui</b></button>
+            <Button color="primary" variant="contained" onClick={() => navigate("/cadastro")}>Cadastre-se</Button>
         </div>
     )
 }

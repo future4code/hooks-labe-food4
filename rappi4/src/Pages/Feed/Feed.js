@@ -41,7 +41,7 @@ const Feed = () => {
                     <ImgTam src={restaurant.logoUrl} alt="imagem logomarca" />
                     <h3>{restaurant.name}</h3>
                     <p>{restaurant.deliveryTime} min</p>
-                    <p>Frete R$:{restaurant.shipping},00</p>
+                    <p>Frete R$ {restaurant.shipping.toFixed(2).replace(".", ",")}</p>
                 </RestaurantContainer>
             )
         }
@@ -52,7 +52,7 @@ const Feed = () => {
                     <ImgTam src={restaurant.logoUrl} alt="imagem logomarca" />
                     <h3>{restaurant.name}</h3>
                     <p>{restaurant.deliveryTime} min</p>
-                    <p>Frete R$:{restaurant.shipping},00</p>
+                    <p>Frete R$ {restaurant.shipping.toFixed(2).replace(".", ",")}</p>
                 </RestaurantContainer>
             )
         }

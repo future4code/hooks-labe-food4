@@ -71,7 +71,6 @@ const Cart = () => {
         )}
     })
 
-    console.log(cart)
     return (
         <div>
             <h1>Cart</h1>
@@ -101,7 +100,6 @@ const Cart = () => {
                 />
                 <label htmlFor="creditcard" onClick={() => setPaymentMethod("creditcard")}> Cartão de crédito </label>
             </form>
-
             <Button color="primary" variant="contained" onClick={() => postPlaceOrder(localStorage.getItem("restaurantId"), paymentMethod)}>Confirmar</Button>
            <Footer/>
         </div>
