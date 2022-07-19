@@ -2,12 +2,9 @@ import { useContext, useEffect } from "react";
 import { useProtectedPage } from "../../Hooks/useProtectedPage";
 import GlobalStateContext from "../../Global/GlobalStateContext";
 import { useParams } from "react-router-dom";
-import styled from "styled-components";
 import Footer from "../../Constants/Footer";
+import {ImgTest} from './styles'
 
-const ImgTest = styled.img`
-    width: 100%;
-`
 
 const RestaurantDetail = () => {
     useProtectedPage()

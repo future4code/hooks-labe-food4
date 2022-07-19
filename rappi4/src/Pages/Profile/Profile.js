@@ -2,21 +2,11 @@ import { useContext, useEffect } from "react";
 import Footer from "../../Constants/Footer";
 import GlobalStateContext from "../../Global/GlobalStateContext";
 import edit  from "../../Assets/edit.png"
-import styled from "styled-components"
 import { useProtectedPage } from "../../Hooks/useProtectedPage"
 import { useNavigate } from "react-router-dom";
+import {DivTeste, DivTesteImg, DivEndereco} from './styles'
 
-const DivTeste = styled.div`
-    display: flex;
-    flex-direction: column;
-`
-const DivTesteImg  = styled.div`
-    display: flex;
-    justify-content: space-between;
-`
-const DivEndereco = styled.div`
-    background-color: grey;
-`
+
 
 const Profile = () => {
     useProtectedPage()
