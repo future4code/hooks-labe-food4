@@ -8,7 +8,7 @@ export const FormAddressContainer = styled.form`
 
 export const InputAddressContainer = styled.input`
 margin: 10px;
-height: 50px;
+height: 35 px;
 `
 
 export const H3Address = styled.h3`
