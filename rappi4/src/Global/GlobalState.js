@@ -2,6 +2,7 @@ import { useState } from "react";
 import { BASE_URL } from "../Constants/url"
 import axios from "axios";
 import GlobalStateContext from "../Global/GlobalStateContext"
+import { toast } from "react-toastify";
 
 const GlobalState = (props) => {
     const [profile, setProfile] = useState([])
@@ -10,7 +11,37 @@ const GlobalState = (props) => {
     const [cart, setCart] = useState([])
     const [activeOrder, setActiveOrder] = useState([])
     const [orderHistory, setOrderHistory] = useState([])
-    const [alertStatus, setAlertStatus] = useState(false)
+
+    // Função para setar alert 
+    const alertSuccess = (message) => {
+        toast.success(`${message}`, {
+            position: "top-right",
+            className: "success-alert",
+            autoClose: 3000,
+            closeOnClick: true,
+            draggable: true,
+        })
+    }
+
+    const alertError = (message) => {
+        toast.error(`${message}`, {
+            position: "top-right",
+            className: "error-alert",
+            autoClose: 3000,
+            closeOnClick: true,
+            draggable: true,
+        })
+    }
+
+    const alertWarning = (message) => {
+        toast.warning(`${message}`, {
+            position: "top-right",
+            className: "error-alert",
+            autoClose: 3000,
+            closeOnClick: true,
+            draggable: true,
+        })
+    }
 
     // Requisição pegar perfil 
     const getProfile = () => {
@@ -78,13 +109,19 @@ const GlobalState = (props) => {
             .post(`${BASE_URL}restaurants/${restaurantId}/order`, body, headers)
 
             .then(() => {
-                alert("Compra confirmada :)") 
+                alertSuccess("Pedido confirmado :)")
                 setCart([])
                 localStorage.removeItem("restaurantId")              
             })
 
             .catch((error) => {
-                console.log(error.message)
+                if (error.message.includes("409")) {
+                    alertError("Existe outro pedido em andamento!")
+                }
+
+                else if (error.message.includes("400") || error.message.includes("404")) {
+                    alertWarning("Informações faltando")
+                }  
             })
     }
 
@@ -136,14 +173,8 @@ const GlobalState = (props) => {
             }
             const newCart = [...cart, setProduct]
             setCart(newCart)
-            // Setando tempo do alert na tela
-            setTimeout(() => {
-                setAlertStatus(true)
-            }, 1)
-
-            setTimeout(() => {
-                setAlertStatus(false)
-            }, 3000) 
+            // Setando alert na tela
+            alertSuccess("Produto adicionado ao carrinho")   
         }
 
         else {
@@ -156,7 +187,7 @@ const GlobalState = (props) => {
                 else { return cartProduct }
             })
                 setCart(newCart)
-                alert("Mais um item adicionado ao carrinho")
+                alertSuccess("Produto adicionado ao carrinho")
         }
 
         localStorage.setItem("restaurantId", restaurantId)
@@ -228,12 +259,10 @@ const GlobalState = (props) => {
         profile,
         activeOrder,
         orderHistory,
-        alertStatus,
        
         // Set States
         setCart,
         setRestaurants,
-        setAlertStatus,
         
         // Request
         getProfile,
