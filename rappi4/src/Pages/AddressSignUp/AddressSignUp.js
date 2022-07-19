@@ -3,6 +3,8 @@ import axios from "axios";
 import { BASE_URL } from "../../Constants/url"
 import { useNavigate } from "react-router-dom";
 import { useProtectedPage } from "../../Hooks/useProtectedPage";
+import { Button } from "@mui/material";
+import {FormAddressContainer, InputAddressContainer, H3Address} from './styles'
 
 const AddressSignUp = () => {
     useProtectedPage()
@@ -36,56 +38,56 @@ const AddressSignUp = () => {
 
     return (
         <div>
-            <h1>AdressSignUp</h1>
-            <form onSubmit={putAddress}>
-                <input
-                    placeholder="Digite o nome da sua rua" 
+            <H3Address>Meu Endereço</H3Address>
+            <FormAddressContainer onSubmit={putAddress}>
+                <InputAddressContainer
+                    placeholder="Rua / Av." 
                     name="street" 
                     value={form.street} 
                     onChange={onChange}
                     required 
                 />  
-                <input
-                    placeholder="Digite o número da sua casa"
+                <InputAddressContainer
+                    placeholder="Número"
                     name="number"
                     value={form.number} 
                     onChange={onChange}
                     required
                 />
                 
-                <input
-                    placeholder="Digite o complemento"
+                <InputAddressContainer
+                    placeholder="Apartamento / Bloco"
                     name="complement"
                     value={form.complement} 
                     onChange={onChange}
                     required
                 />
                 
-                <input
-                    placeholder="Digite o bairro"
+                <InputAddressContainer
+                    placeholder="Bairro"
                     name="neighbourhood"
                     value={form.neighbourhood} 
                     onChange={onChange}
                     required
                 />
                 
-                <input
-                    placeholder="Digite a sua cidade"
+                <InputAddressContainer
+                    placeholder="Cidade"
                     name="city"
                     value={form.city} 
                     onChange={onChange}
                     required
                 />
                 
-                <input
-                    placeholder="Digite o seu estado"
+                <InputAddressContainer
+                    placeholder="Estado"
                     name="state"
                     value={form.state} 
                     onChange={onChange}
                     required
                 />
-                <button>Enviar</button>
-            </form>
+                <Button type="submit" color="primary" variant="contained">Enviar</Button>
+            </FormAddressContainer>
         </div>
     )
 }
