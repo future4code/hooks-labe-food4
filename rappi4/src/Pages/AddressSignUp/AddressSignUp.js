@@ -4,7 +4,7 @@ import { BASE_URL } from "../../Constants/url"
 import { useNavigate } from "react-router-dom";
 import { useProtectedPage } from "../../Hooks/useProtectedPage";
 import { Button, TextField } from "@mui/material";
-import {FormAddressContainer, InputAddressContainer, H3Address} from './styles'
+import {FormAddressContainer, H3Address} from './styles'
 
 const AddressSignUp = () => {
     useProtectedPage()
@@ -42,13 +42,83 @@ const AddressSignUp = () => {
             <FormAddressContainer onSubmit={putAddress}>
                 
                 
-            <TextField id="outlined-basic" label="Rua / Av.*" variant="outlined" helperText=" " size="small"/>
-            <TextField id="outlined-basic" label="Número*" variant="outlined" helperText=" " size="small"/>
-            <TextField id="outlined-basic" label="Complemento" variant="outlined" helperText=" " size="small"/>
-            <TextField id="outlined-basic" label="Bairro*" variant="outlined" helperText=" " size="small"/>
-            <TextField id="outlined-basic" label="Cidade*" variant="outlined" helperText=" " size="small"/>
-            <TextField id="outlined-basic" label="Estado*" variant="outlined" helperText=" " size="small"/>
+                <TextField
+                    id="outlined-basic"
+                    label="Rua / Av.*"
+                    variant="outlined"
+                    helperText=" "
+                    size="small"
+                    placeholder="Rua / Av." 
+                    name="street"
+                    value={form.street}
+                    onChange={onChange}
+                    required 
+                />
 
+                <TextField 
+                    id="outlined-basic" 
+                    label="Número*" 
+                    variant="outlined" 
+                    helperText=" " 
+                    size="small"
+                    placeholder="Número"
+                    name="number"
+                    value={form.number} 
+                    onChange={onChange}
+                    required
+                />
+
+                <TextField 
+                    id="outlined-basic" 
+                    label="Complemento" 
+                    variant="outlined" 
+                    helperText=" " 
+                    size="small"
+                    placeholder="Apartamento / Bloco"
+                    name="complement"
+                    value={form.complement} 
+                    onChange={onChange}
+                    required
+                />
+
+                <TextField 
+                    id="outlined-basic" 
+                    label="Bairro*" 
+                    variant="outlined" 
+                    helperText=" " 
+                    size="small"
+                    placeholder="Bairro"
+                    name="neighbourhood"
+                    value={form.neighbourhood} 
+                    onChange={onChange}
+                    required
+                />
+
+                <TextField 
+                    id="outlined-basic" 
+                    label="Cidade*" 
+                    variant="outlined" 
+                    helperText=" " 
+                    size="small"
+                    placeholder="Cidade"
+                    name="city"
+                    value={form.city} 
+                    onChange={onChange}
+                    required
+                />
+                
+                <TextField 
+                    id="outlined-basic" 
+                    label="Estado*" 
+                    variant="outlined" 
+                    helperText=" " 
+                    size="small"
+                    placeholder="Estado"
+                    name="state"
+                    value={form.state} 
+                    onChange={onChange}
+                    required
+                />
 
                 <Button type="submit" color="primary" variant="contained">Enviar</Button>
             </FormAddressContainer>

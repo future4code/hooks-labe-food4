@@ -6,11 +6,6 @@ export const FormAddressContainer = styled.form`
     margin: 10px;
 `
 
-export const InputAddressContainer = styled.input`
-margin: 10px;
-height: 35 px;
-`
-
 export const H3Address = styled.h3`
     display: flex;
     flex-direction: column;
