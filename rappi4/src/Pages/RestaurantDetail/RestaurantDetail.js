@@ -4,7 +4,6 @@ import GlobalStateContext from "../../Global/GlobalStateContext";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Footer from "../../Constants/Footer";
-import AlertSuccess from "../../Components/AlertSuccess";
 
 const ImgTest = styled.img`
     width: 100%;
@@ -12,7 +11,7 @@ const ImgTest = styled.img`
 
 const RestaurantDetail = () => {
     useProtectedPage()
-    const {restaurants, getRestaurants, restaurantDetails, getRestaurantDetail, addProduct, alertStatus, setAlertStatus} = useContext(GlobalStateContext)
+    const {restaurants, getRestaurants, restaurantDetails, getRestaurantDetail, addProduct} = useContext(GlobalStateContext)
     const {id} = useParams()
     
     useEffect(() => {getRestaurants()}, [])
@@ -73,9 +72,6 @@ const RestaurantDetail = () => {
 
     return (
         <div>
-            <div>
-                {alertStatus && <AlertSuccess/> }
-            </div>
             <h1>Result</h1>
             {renderDetailsRestaurant}
             <h2>Principais</h2>
