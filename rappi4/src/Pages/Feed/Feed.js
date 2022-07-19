@@ -1,88 +1,117 @@
 import { useContext, useEffect, useState } from "react";
 import GlobalStateContext from "../../Global/GlobalStateContext";
 import Footer from "../../Constants/Footer";
-import {ImgTam, RestaurantContainer, DivTeste} from './styles'
+import {
+  ImageSize,
+  FoodContainer,
+  DivTeste,
+  FoodSearch,
+  Title,
+  RestaurantName,
+  DeliveryContainer,
+  DeliveryTime,
+  ShippingPrice
+} from "./styles";
 import { useProtectedPage } from "../../Hooks/useProtectedPage";
 import { useNavigate } from "react-router-dom";
 
-
-
-
 const Feed = () => {
-    useProtectedPage()
-    const navigate = useNavigate()
-    const {restaurants, getRestaurants, activeOrder, getActiveOrder} = useContext(GlobalStateContext)
-    const [selectedCategory, setSelectedCategory] = useState("")
-    
-    useEffect(() => {getRestaurants()}, [])
-    useEffect(() => {getActiveOrder()}, [])
+  useProtectedPage();
+  const navigate = useNavigate();
+  const { restaurants, getRestaurants, activeOrder, getActiveOrder } =
+    useContext(GlobalStateContext);
+  const [selectedCategory, setSelectedCategory] = useState("");
 
-    const renderTypesOfFood = restaurants.map((type, index) => {
-        return (
-            <div key={index}>
-                <p onClick={() => setSelectedCategory(type.category)}>{type.category}</p>
-            </div>
-        )
-    })
+  useEffect(() => {
+    getRestaurants();
+  }, []);
+  useEffect(() => {
+    getActiveOrder();
+  }, []);
 
-    const renderRestaurants = restaurants.map((restaurant) => {
-        if (restaurant.category === selectedCategory || restaurant.name === selectedCategory) {
-            return (
-                <RestaurantContainer key={restaurant.id} onClick={() => chooseRestaurant(restaurant.id)}>
-                    <ImgTam src={restaurant.logoUrl} alt="imagem logomarca" />
-                    <h3>{restaurant.name}</h3>
-                    <p>{restaurant.deliveryTime} min</p>
-                    <p>Frete R$ {restaurant.shipping.toFixed(2).replace(".", ",")}</p>
-                </RestaurantContainer>
-            )
-        }
-
-        else if (selectedCategory === "") {
-            return (
-                <RestaurantContainer  key={restaurant.id} onClick={() => chooseRestaurant(restaurant.id)}>
-                    <ImgTam src={restaurant.logoUrl} alt="imagem logomarca" />
-                    <h3>{restaurant.name}</h3>
-                    <p>{restaurant.deliveryTime} min</p>
-                    <p>Frete R$ {restaurant.shipping.toFixed(2).replace(".", ",")}</p>
-                </RestaurantContainer>
-            )
-        }
-    })
-
-    const renderActiveOrder = () => {
-        if (activeOrder && activeOrder !== null) {
-            return (
-                <DivTeste>
-                    <h3>Pedido em andamento</h3>
-                    <p>{activeOrder.restaurantName}</p>
-                    <p><b>SUBTOTAL R$:</b> {activeOrder.totalPrice}</p>
-                </DivTeste>
-            )
-        }}
-        
-   
-    const onChangeCategory = (event) => {
-        setSelectedCategory(event.target.value)
-    } 
-
-    const chooseRestaurant = (param) => {
-        navigate(`/feed/restaurante/${param}`)
-    }
-
+  const renderTypesOfFood = restaurants.map((type, index) => {
     return (
-        <div>
-            <h1>Feed</h1>
-            <input
-                placeholder="Restaurante"
-                value={selectedCategory}
-                onChange={onChangeCategory}
-            />
-            {renderTypesOfFood}
-            {renderRestaurants}
-            {renderActiveOrder()}
-            <Footer/>
+      <FoodContainer key={index}>
+        <h4 onClick={() => setSelectedCategory(type.category)}>
+          {type.category}
+        </h4>
+      </FoodContainer>
+    );
+  });
+
+  const renderRestaurants = restaurants.map((restaurant) => {
+    if (
+      restaurant.category === selectedCategory ||
+      restaurant.name === selectedCategory
+    ) {
+      return (
+        <div
+          key={restaurant.id}
+          onClick={() => chooseRestaurant(restaurant.id)}
+        >
+          <ImageSize src={restaurant.logoUrl} alt="imagem logomarca" />
+          <RestaurantName>{restaurant.name}</RestaurantName>
+
+          <DeliveryContainer>
+            <p>{restaurant.deliveryTime} min</p>
+            <p>Frete R$ {restaurant.shipping.toFixed(2).replace(".", ",")}</p>
+          </DeliveryContainer>
         </div>
-    )
-}
+      );
+    } else if (selectedCategory === "") {
+      return (
+        <div
+          key={restaurant.id}
+          onClick={() => chooseRestaurant(restaurant.id)}
+        >
+          <ImageSize src={restaurant.logoUrl} alt="imagem logomarca" />
+          <RestaurantName>{restaurant.name}</RestaurantName>
+          <DeliveryContainer>
+          <DeliveryTime>{restaurant.deliveryTime} min</DeliveryTime>
+          <ShippingPrice>Frete R$ {restaurant.shipping.toFixed(2).replace(".", ",")}</ShippingPrice>
+          </DeliveryContainer>
+        </div>
+      );
+    }
+  });
+
+  const renderActiveOrder = () => {
+    if (activeOrder && activeOrder !== null) {
+      return (
+        <DivTeste>
+          <h3>Pedido em andamento</h3>
+          <p>{activeOrder.restaurantName}</p>
+          <p>
+            <b>SUBTOTAL R$:</b> {activeOrder.totalPrice}
+          </p>
+        </DivTeste>
+      );
+    }
+  };
+
+  const onChangeCategory = (event) => {
+    setSelectedCategory(event.target.value);
+  };
+
+  const chooseRestaurant = (param) => {
+    navigate(`/feed/restaurante/${param}`);
+  };
+
+  return (
+    <div>
+      <Title>Feed</Title>
+      <FoodSearch
+        placeholder="Restaurante"
+        value={selectedCategory}
+        onChange={onChangeCategory}
+      />
+
+      {renderTypesOfFood}
+      {renderRestaurants}
+      {renderActiveOrder()}
+      <Footer />
+    </div>
+  );
+};
 
 export default Feed;
