@@ -1,16 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import GlobalStateContext from "../../Global/GlobalStateContext";
 import Footer from "../../Constants/Footer";
-import styled from "styled-components";
 import { useProtectedPage } from "../../Hooks/useProtectedPage";
 import { Button } from "@mui/material";
+import {ImgTest, DivButtonsAdd} from './styles'
 
-const ImgTest = styled.img`
-    width: 50%;
-`
-const DivButtonsAdd = styled.div`
-    display: flex;
-`
+
 const Cart = () => {
     useProtectedPage()
     const { profile, getProfile, restaurants, getRestaurants, cart, removeProduct, postPlaceOrder, addMoreProduct, removeMoreProduct } = useContext(GlobalStateContext)
