@@ -19,6 +19,9 @@ export const ImageSize = styled.img`
   display: flex;
   width: 100%;
   height: 200px;
+  border-radius: 15px;
+  border: 1px solid #b8b8b8;
+  margin-bottom: 5px;
 `;
 
 export const FoodContainer = styled.div`
@@ -29,7 +32,6 @@ export const FoodContainer = styled.div`
   margin: 0 8px;
   font-family: Roboto;
   font-size: 16px;
-  /* font-weight: normal; */
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
@@ -54,6 +56,7 @@ export const DeliveryContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-bottom:5px;
 `;
 export const DeliveryTime = styled.p`
   width: 148px;
@@ -82,7 +85,7 @@ export const ShippingPrice = styled.p`
   text-align: right;
 `;
 
-export const DivTeste = styled.div`
+export const SnackOrders = styled.div`
   width: 100%;
   height: 120px;
   padding: 10px;
@@ -91,4 +94,9 @@ export const DivTeste = styled.div`
   bottom: 0;
   background-color: #ffff;
   border-top: 1px solid #c8c8c8;
+`;
+
+export const InputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
