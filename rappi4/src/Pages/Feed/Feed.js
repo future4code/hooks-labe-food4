@@ -6,7 +6,7 @@ import {
   RestaurantName,DeliveryContainer,
   DeliveryTime,ShippingPrice,
   InputContainer,CardContainer,
-  Header,
+  Header, ContainerRestaurants
 } from "./styles";
 import { TextField } from "@mui/material";
 import { useProtectedPage } from "../../Hooks/useProtectedPage";
@@ -50,8 +50,8 @@ const Feed = () => {
           <RestaurantName>{restaurant.name}</RestaurantName>
 
           <DeliveryContainer>
-            <p>{restaurant.deliveryTime} min</p>
-            <p>Frete R$ {restaurant.shipping.toFixed(2).replace(".", ",")}</p>
+            <DeliveryTime>{restaurant.deliveryTime} min</DeliveryTime>
+            <ShippingPrice>Frete R$ {restaurant.shipping.toFixed(2).replace(".", ",")}</ShippingPrice>
           </DeliveryContainer>
         </CardContainer>
       );
@@ -113,7 +113,9 @@ const Feed = () => {
         />
       </InputContainer>
       {renderTypesOfFood}
-      {renderRestaurants}
+      <ContainerRestaurants>
+        {renderRestaurants}
+      </ContainerRestaurants>
       {renderActiveOrder()}
       <Footer />
     </div>
