@@ -4,7 +4,7 @@ import GlobalStateContext from "../../Global/GlobalStateContext";
 import edit  from "../../Assets/edit.png"
 import { useProtectedPage } from "../../Hooks/useProtectedPage"
 import { useNavigate } from "react-router-dom";
-import {DivTeste, DivTesteImg, DivEndereco, PEndereco, H3Profile, Ordens, H3RestaurantName} from './styles'
+import {DivTeste, DivTesteImg, DivEndereco, PEndereco, H3Profile, Ordens, H3RestaurantName, DivRenderOrders} from './styles'
 
 
 
@@ -23,7 +23,6 @@ const Profile = () => {
             </Ordens>
             
         )
-        console.log(order)
     })
 
     return (
@@ -48,7 +47,11 @@ const Profile = () => {
 
                 <p>Histórico de pedidos</p>
                 <hr></hr>
-                {renderOrders}
+                
+                <DivRenderOrders>
+                    {renderOrders}
+                </DivRenderOrders>
+                
                 
             </DivTeste>
             <Footer/>

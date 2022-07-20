@@ -10,9 +10,6 @@ import shoppingcartActived from "../Assets/shopping-cartactived.png"
 import { useNavigate } from "react-router-dom"
 import styled from "styled-components";
 
-const Container = styled.div`
-    margin-top: 12vh;
-`
 const FooterStyled = styled.footer`
     display: flex;
     width: 100%;
@@ -38,35 +35,29 @@ const Footer = () => {
     switch(localStorage.getItem("page")) {
         default : 
             return (
-                <Container>
                     <FooterStyled>
                         <FooterImg src={homepageActived} onClick={() => changeCurrentPage("home", "/feed")} alt="icone home"/>
                         <FooterImg src={shoppingcart} onClick={() => changeCurrentPage("cart", "/carrinho")}  alt="icone carrinho"/>
                         <FooterImg src={avatar} onClick={() => changeCurrentPage("profile", "/perfil")}  alt="icone perfil"/>
                     </FooterStyled>
-                </Container>
             )
 
         case "cart" :
             return (
-                <Container>
                     <FooterStyled>
                         <FooterImg src={homepage} onClick={() => changeCurrentPage("home", "/feed")} alt="icone home"/>
                         <FooterImg src={shoppingcartActived} onClick={() => changeCurrentPage("cart", "/carrinho")}  alt="icone carrinho"/>
                         <FooterImg src={avatar} onClick={() => changeCurrentPage("profile", "/perfil")}  alt="icone perfil"/>
                     </FooterStyled>
-                </Container>
             )
 
         case "profile" : 
             return (
-                <Container>
                     <FooterStyled>
                         <FooterImg src={homepage} onClick={() => changeCurrentPage("home", "/feed")} alt="icone home"/>
                         <FooterImg src={shoppingcart} onClick={() => changeCurrentPage("cart", "/carrinho")}  alt="icone carrinho"/>
                         <FooterImg src={avatarActived} onClick={() => changeCurrentPage("profile", "/perfil")}  alt="icone perfil"/>
                     </FooterStyled>
-                </Container>
             )
     }
 }
