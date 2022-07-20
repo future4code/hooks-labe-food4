@@ -65,7 +65,7 @@ const Cart = () => {
                 </div>
         )}
     })
-
+        console.log(paymentMethod)
     return (
         <div>
             <h1>Cart</h1>
@@ -85,6 +85,7 @@ const Cart = () => {
                     id="money"
                     type="radio"
                     name="form-pag"
+                    onClick={() => setPaymentMethod("money")}
                 />
                 <label htmlFor="money" onClick={() => setPaymentMethod("money")}> Dinheiro </label>
                 
@@ -92,6 +93,7 @@ const Cart = () => {
                     id="creditcard"
                     type="radio"
                     name="form-pag"
+                    onClick={() => setPaymentMethod("creditcard")}
                 />
                 <label htmlFor="creditcard" onClick={() => setPaymentMethod("creditcard")}> Cartão de crédito </label>
             </form>
