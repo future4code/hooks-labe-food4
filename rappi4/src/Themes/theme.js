@@ -1,6 +1,5 @@
 import { createTheme} from "@mui/material"
 
-
 export const theme = createTheme({
     palette: {
         primary: {
@@ -9,7 +8,7 @@ export const theme = createTheme({
         },
 
         secondary: {
-            main: "#ffc6b6",
+            main: "#ff9a8a",
             contrastText: '#ffffff',
           },
         

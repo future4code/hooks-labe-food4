@@ -5,7 +5,6 @@ export const DivBody = styled.div`
     display: flex;
     flex-direction: column;
 `
-
 // Estilização Header
 export const Header = styled.header`
     display: flex;
@@ -19,7 +18,6 @@ export const BackImgHeader = styled.img`
     height: 24px;
     cursor: pointer;
 `
-
 // Estilização Container infos do restaurante
 export const ContainerInfos = styled.div`
     height: 350px;
@@ -47,7 +45,6 @@ export const ShippingAndDelivery = styled.div`
     display: flex;
     gap: 14px;
 `
-
 // Estilização Container Produtos do restaurante
 export const ContainerProducts = styled.div`
     display: flex;

@@ -17,7 +17,7 @@ const GlobalState = (props) => {
         toast.success(`${message}`, {
             position: "top-right",
             className: "success-alert",
-            autoClose: 3000,
+            autoClose: 2000,
             closeOnClick: true,
             draggable: true,
         })
@@ -27,7 +27,7 @@ const GlobalState = (props) => {
         toast.error(`${message}`, {
             position: "top-right",
             className: "error-alert",
-            autoClose: 3000,
+            autoClose: 2000,
             closeOnClick: true,
             draggable: true,
         })
@@ -37,7 +37,7 @@ const GlobalState = (props) => {
         toast.warning(`${message}`, {
             position: "top-right",
             className: "error-alert",
-            autoClose: 3000,
+            autoClose: 2000,
             closeOnClick: true,
             draggable: true,
         })
@@ -276,7 +276,8 @@ const GlobalState = (props) => {
         addProduct,
         removeProduct,
         addMoreProduct,
-        removeMoreProduct
+        removeMoreProduct,
+        alertError
     }
 
     return (
