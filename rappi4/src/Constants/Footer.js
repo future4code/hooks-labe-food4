@@ -11,9 +11,8 @@ import { useNavigate } from "react-router-dom"
 import styled from "styled-components";
 
 const Container = styled.div`
-    margin-top: 7vh;
+    margin-top: 12vh;
 `
-
 const FooterStyled = styled.footer`
     display: flex;
     width: 100%;
