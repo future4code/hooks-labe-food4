@@ -65,7 +65,7 @@ const Cart = () => {
                 </div>
         )}
     })
-        console.log(paymentMethod)
+
     return (
         <div>
             <h1>Cart</h1>
