@@ -4,7 +4,7 @@ import GlobalStateContext from "../../Global/GlobalStateContext";
 import edit  from "../../Assets/edit.png"
 import { useProtectedPage } from "../../Hooks/useProtectedPage"
 import { useNavigate } from "react-router-dom";
-import {DivTeste, DivTesteImg, DivEndereco} from './styles'
+import {DivTeste, DivTesteImg, DivEndereco, PEndereco, H3Profile, Ordens, H3RestaurantName} from './styles'
 
 
 
@@ -17,16 +17,19 @@ const Profile = () => {
 
     const renderOrders =  orderHistory && orderHistory.map((order) => {
         return (
-            <div key={order.createdAt}>
-                <h3>{order.restaurantName}</h3>
+            <Ordens key={order.createdAt}>
+                <H3RestaurantName>{order.restaurantName}</H3RestaurantName>
                 <h3><b>SUBTOTAL R$</b>{order.totalPrice.toFixed(2)}</h3>
-            </div>
+            </Ordens>
+            
         )
+        console.log(order)
     })
 
     return (
         <div>
-            <h1>Profile</h1>
+            <H3Profile>Meu Perfil</H3Profile>
+            <hr></hr>
             <DivTeste>
                 <DivTesteImg>
                     <p>{profile.name}</p>
@@ -36,16 +39,17 @@ const Profile = () => {
                 <p>{profile.cpf}</p>
                 
                 <DivEndereco>
-                    <p>Endereço cadastrado</p>
+                    <PEndereco>Endereço cadastrado</PEndereco>
                     <DivTesteImg>
                         <p>{profile.address}</p>
                         <img src={edit} onClick={() => navigate("/cadastro-de-endereco")}/>
                     </DivTesteImg>
                 </DivEndereco>
 
-                <h3>Histórico de pedidos</h3>
+                <p>Histórico de pedidos</p>
                 <hr></hr>
                 {renderOrders}
+                
             </DivTeste>
             <Footer/>
         </div>
