@@ -3,7 +3,6 @@ import styled from 'styled-components'
 export const DivTeste = styled.div`
     display: flex;
     flex-direction: column;
-    margin-left: 15px;
     margin-top: 15px;
 `
 export const DivTesteImg  = styled.div`
@@ -39,15 +38,18 @@ export const Ordens = styled.div`
     margin: 7px 0 0;
     border-radius: 8px;
     padding: 15px;
-    
-    
 `
-
 export const H3RestaurantName = styled.h3`
     color: #e86e5a;
     margin-bottom: 10px;
 `
-
 export const H3Subtotal = styled.h3`
 
+`
+export const DivRenderOrders = styled.div`
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 55px;
 `

@@ -81,12 +81,11 @@ const Feed = () => {
           <h3>Pedido em andamento</h3>
           <p>{activeOrder.restaurantName}</p>
           <p>
-            <b>SUBTOTAL R$:</b> {activeOrder.totalPrice}
+            <b>SUBTOTAL R$</b>{activeOrder.totalPrice}
           </p>
         </SnackOrders>
-      );
-    }
-  };
+      )
+  }}
 
   const onChangeCategory = (event) => {
     setSelectedCategory(event.target.value);
