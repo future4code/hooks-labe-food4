@@ -4,13 +4,13 @@ import Footer from "../../Constants/Footer";
 import {
   ImageSize,
   FoodContainer,
-  DivTeste,
-  // FoodSearch,
+  SnackOrders,
   Title,
   RestaurantName,
   DeliveryContainer,
   DeliveryTime,
   ShippingPrice,
+  InputContainer
 } from "./styles";
 import { TextField } from "@mui/material";
 import { useProtectedPage } from "../../Hooks/useProtectedPage";
@@ -81,13 +81,13 @@ const Feed = () => {
   const renderActiveOrder = () => {
     if (activeOrder && activeOrder !== null) {
       return (
-        <DivTeste>
+        <SnackOrders>
           <h3>Pedido em andamento</h3>
           <p>{activeOrder.restaurantName}</p>
           <p>
             <b>SUBTOTAL R$:</b> {activeOrder.totalPrice}
           </p>
-        </DivTeste>
+        </SnackOrders>
       );
     }
   };
@@ -103,20 +103,18 @@ const Feed = () => {
   return (
     <div>
       <Title>Feed</Title>
-     <div>
-      <TextField
-        id="outlined-basic"
-        label="Restaurante"
-        variant="outlined"
-        helperText=" "
-        size="medium"
-        placeholder="Restaurante"
-        value={selectedCategory}
-        onChange={onChangeCategory}
-      />
-      </div>
-    
-
+      <InputContainer>
+        <TextField
+          id="outlined-basic"
+          label="Restaurante"
+          variant="outlined"
+          helperText=" "
+          size="small"
+          placeholder="Restaurante"
+          value={selectedCategory}
+          onChange={onChangeCategory}
+        />
+      </InputContainer>
       {renderTypesOfFood}
       {renderRestaurants}
       {renderActiveOrder()}
