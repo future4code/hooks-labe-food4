@@ -103,7 +103,7 @@ export const SnackOrders = styled.div`
   height: 140px;
   padding: 10px;
   margin-top: 10px;
-  position: sticky;
+  position: fixed;
   bottom: 0;
   background-color: #e86e5a;
   border-top: 1px solid #c8c8c8;
@@ -117,3 +117,7 @@ export const InputContainer = styled.div`
   margin:auto;
   margin-top:10px;
 `;
+
+export const ContainerRestaurants = styled.div`
+  margin-bottom: 150px;
+`
