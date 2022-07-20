@@ -2,15 +2,11 @@ import { useContext, useEffect, useState } from "react";
 import GlobalStateContext from "../../Global/GlobalStateContext";
 import Footer from "../../Constants/Footer";
 import {
-  ImageSize,
-  FoodContainer,
-  SnackOrders,
-  Title,
-  RestaurantName,
-  DeliveryContainer,
-  DeliveryTime,
-  ShippingPrice,
-  InputContainer
+  ImageSize, FoodContainer,SnackOrders,
+  RestaurantName,DeliveryContainer,
+  DeliveryTime,ShippingPrice,
+  InputContainer,CardContainer,
+  Header,
 } from "./styles";
 import { TextField } from "@mui/material";
 import { useProtectedPage } from "../../Hooks/useProtectedPage";
@@ -46,7 +42,7 @@ const Feed = () => {
       restaurant.name === selectedCategory
     ) {
       return (
-        <div
+        <CardContainer
           key={restaurant.id}
           onClick={() => chooseRestaurant(restaurant.id)}
         >
@@ -57,11 +53,11 @@ const Feed = () => {
             <p>{restaurant.deliveryTime} min</p>
             <p>Frete R$ {restaurant.shipping.toFixed(2).replace(".", ",")}</p>
           </DeliveryContainer>
-        </div>
+        </CardContainer>
       );
     } else if (selectedCategory === "") {
       return (
-        <div
+        <CardContainer
           key={restaurant.id}
           onClick={() => chooseRestaurant(restaurant.id)}
         >
@@ -73,7 +69,7 @@ const Feed = () => {
               Frete R$ {restaurant.shipping.toFixed(2).replace(".", ",")}
             </ShippingPrice>
           </DeliveryContainer>
-        </div>
+        </CardContainer>
       );
     }
   });
@@ -102,7 +98,9 @@ const Feed = () => {
 
   return (
     <div>
-      <Title>Feed</Title>
+      <Header>
+        <h3>Feed</h3>
+      </Header>
       <InputContainer>
         <TextField
           id="outlined-basic"
