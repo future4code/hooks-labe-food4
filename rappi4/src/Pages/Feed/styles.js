@@ -7,7 +7,7 @@ export const Title = styled.h3`
   padding: 13px 63.5px 12px;
 `;
 
-export const FoodSearch = styled.input`
+export const FoodSearch = styled.div`
   display: flex;
   width: 100%;
   height: 30px;
