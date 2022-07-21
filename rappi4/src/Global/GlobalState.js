@@ -133,7 +133,7 @@ const GlobalState = (props) => {
             .get(`${BASE_URL}active-order`, headers)
 
         .then((response) => {
-            setActiveOrder(response.data.order)
+            setActiveOrder(response.data.order);
         })
 
         .catch((error) => {
@@ -277,6 +277,7 @@ const GlobalState = (props) => {
         removeProduct,
         addMoreProduct,
         removeMoreProduct,
+        alertSuccess,
         alertError
     }
 

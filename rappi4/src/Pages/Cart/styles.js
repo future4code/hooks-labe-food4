@@ -126,6 +126,7 @@ export const ContainerPayment = styled.div`
     flex-direction: column;
     width: 100%;
     margin-top: 30px;
+    margin-bottom: 80px;
     height: 76px;
     padding: 15px;
     gap: 10px;

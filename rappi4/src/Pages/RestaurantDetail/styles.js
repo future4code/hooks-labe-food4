@@ -51,6 +51,7 @@ export const ContainerProducts = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 15px;
+    margin-bottom: 60px;
 `
 export const DivProducts = styled.div`
     width: 95%;

@@ -15,16 +15,11 @@ import { useNavigate } from "react-router-dom";
 const Feed = () => {
   useProtectedPage();
   const navigate = useNavigate();
-  const { restaurants, getRestaurants, activeOrder, getActiveOrder } =
-    useContext(GlobalStateContext);
+  const { restaurants, getRestaurants, activeOrder, getActiveOrder } = useContext(GlobalStateContext);
   const [selectedCategory, setSelectedCategory] = useState("");
 
-  useEffect(() => {
-    getRestaurants();
-  }, []);
-  useEffect(() => {
-    getActiveOrder();
-  }, []);
+  useEffect(() => {getRestaurants()}, []);
+  useEffect(() => {getActiveOrder()}, []);
 
   const renderTypesOfFood = restaurants.map((type, index) => {
     return (
@@ -33,67 +28,54 @@ const Feed = () => {
           {type.category}
         </h4>
       </FoodContainer>
-    );
-  });
+    )
+  })
 
   const renderRestaurants = restaurants.map((restaurant) => {
-    if (
-      restaurant.category === selectedCategory ||
-      restaurant.name === selectedCategory
-    ) {
+    if (restaurant.category === selectedCategory || restaurant.name === selectedCategory) {
       return (
-        <CardContainer
-          key={restaurant.id}
-          onClick={() => chooseRestaurant(restaurant.id)}
-        >
+        <CardContainer key={restaurant.id} onClick={() => chooseRestaurant(restaurant.id)}>
           <ImageSize src={restaurant.logoUrl} alt="imagem logomarca" />
           <RestaurantName>{restaurant.name}</RestaurantName>
-
           <DeliveryContainer>
             <DeliveryTime>{restaurant.deliveryTime} min</DeliveryTime>
             <ShippingPrice>Frete R$ {restaurant.shipping.toFixed(2).replace(".", ",")}</ShippingPrice>
           </DeliveryContainer>
         </CardContainer>
-      );
-    } else if (selectedCategory === "") {
+      )
+    } 
+    
+    else if (selectedCategory === "") {
       return (
-        <CardContainer
-          key={restaurant.id}
-          onClick={() => chooseRestaurant(restaurant.id)}
-        >
+        <CardContainer key={restaurant.id} onClick={() => chooseRestaurant(restaurant.id)}>
           <ImageSize src={restaurant.logoUrl} alt="imagem logomarca" />
           <RestaurantName>{restaurant.name}</RestaurantName>
           <DeliveryContainer>
             <DeliveryTime>{restaurant.deliveryTime} min</DeliveryTime>
-            <ShippingPrice>
-              Frete R$ {restaurant.shipping.toFixed(2).replace(".", ",")}
-            </ShippingPrice>
+            <ShippingPrice>Frete R$ {restaurant.shipping.toFixed(2).replace(".", ",")}</ShippingPrice>
           </DeliveryContainer>
         </CardContainer>
-      );
-    }
-  });
+      )}
+    })
 
   const renderActiveOrder = () => {
-    if (activeOrder && activeOrder !== null) {
+    if (activeOrder && activeOrder && activeOrder !== null) {
       return (
         <SnackOrders>
           <h3>Pedido em andamento</h3>
           <p>{activeOrder.restaurantName}</p>
-          <p>
-            <b>SUBTOTAL R$</b>{activeOrder.totalPrice}
-          </p>
+          <p><b>SUBTOTAL R$</b>{activeOrder.totalPrice}</p>
         </SnackOrders>
-      )
-  }}
+    )}
+  }
 
   const onChangeCategory = (event) => {
-    setSelectedCategory(event.target.value);
-  };
+    setSelectedCategory(event.target.value)
+  }
 
   const chooseRestaurant = (param) => {
-    navigate(`/feed/restaurante/${param}`);
-  };
+    navigate(`/feed/restaurante/${param}`)
+  }
 
   return (
     <div>
@@ -117,9 +99,9 @@ const Feed = () => {
         {renderRestaurants}
       </ContainerRestaurants>
       {renderActiveOrder()}
-      <Footer />
+      <Footer/>
     </div>
-  );
-};
+  )
+}
 
 export default Feed;
