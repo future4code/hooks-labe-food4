@@ -1,36 +1,45 @@
 import styled from 'styled-components'
 
-export const DivTeste = styled.div`
+// Estilização Header
+export const Header = styled.header`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    border-bottom: 1px solid #d3d3d3;
+`
+// Estilização Informações usuário
+export const DivInfos = styled.div`
     display: flex;
     flex-direction: column;
-    margin-top: 15px;
+    margin-top: 5px;
+    padding: 15px;
 `
-export const DivTesteImg  = styled.div`
+export const DivImg  = styled.div`
     display: flex;
     justify-content: space-between;
 `
+// Estilização Endereço
 export const DivEndereco = styled.div`
     background-color: #eeeeee;
-    margin-top: 15px;
     margin-bottom: 15px;
-    padding: 10px;
+    padding: 15px;
 `
-
 export const PEndereco = styled.p`
     color: #b8b8b8;
-    margin-bottom: 10px;
-    
+    margin-bottom: 10px; 
 `
-
-export const H3Profile = styled.h3`
-    display: flex;
-    flex-direction: column;
-    justify-items: space-between;
-    margin-left: 105px;
-    margin-top: 10px;
-    margin-bottom: 15px;
+// Estilização Histórico de pedidos
+export const DivTitleHist = styled.div`
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 15px;
+` 
+export const PTitle = styled.h3`
+    border-bottom: 1px solid #000000;
+    padding-bottom: 5px;
+    font-weight: normal;
 `
-
 export const Ordens = styled.div`
     border: 1px solid grey;
     width: 348px;
@@ -41,10 +50,8 @@ export const Ordens = styled.div`
 `
 export const H3RestaurantName = styled.h3`
     color: #e86e5a;
+    font-weight: normal;
     margin-bottom: 10px;
-`
-export const H3Subtotal = styled.h3`
-
 `
 export const DivRenderOrders = styled.div`
     display: flex;

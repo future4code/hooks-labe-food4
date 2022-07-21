@@ -128,7 +128,6 @@ const RestaurantDetail = () => {
                     {mapDrink.includes(true) && <H3divProducts><h3>Bebidas</h3></H3divProducts>}
                     {renderDrinks}
             </ContainerProducts>
-            <br></br>
             <Footer/>          
         </DivBody>
     )

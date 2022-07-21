@@ -4,46 +4,48 @@ import { BASE_URL } from "../../Constants/url"
 import { useNavigate } from "react-router-dom";
 import { useProtectedPage } from "../../Hooks/useProtectedPage";
 import { Button, TextField } from "@mui/material";
-import {FormAddressContainer, H3Address} from './styles'
+import {FormAddressContainer, Header} from './styles'
+import GlobalStateContext from "../../Global/GlobalStateContext";
+import { useContext } from "react";
 
 const AddressSignUp = () => {
     useProtectedPage()
     const navigate = useNavigate()
+    const {alertSuccess, alertError} = useContext(GlobalStateContext)
     const [form, onChange, cleanFields] = useForm({street: "", number: "", neighbourhood: "", city: "", state: "", complement: ""})
     
     const putAddress = (event) => {
         event.preventDefault()
         const headers = {
-            headers : {
-                auth : localStorage.getItem("token")
-            }}
+            headers : {auth : localStorage.getItem("token")}}
         
         axios 
             .put(`${BASE_URL}address`, form, headers)
             .then((response) => {
-                if (window.confirm("Endereço cadastrado com sucesso!")) { 
-                    localStorage.setItem("token", response.data.token)
-                    navigate("/feed")
-
-                }
+                alertSuccess("Conta cadastrada")
+                localStorage.setItem("token", response.data.token)
+                navigate("/feed")
                 cleanFields()
             })
             
             .catch((error) => {
                 console.log(error.message)
-                alert("Algo deu errado :(")
+                alertError("Algo deu  errado na criação da conta :(")
                 cleanFields()   
             })
     }
 
     return (
         <div>
-            <H3Address>Meu Endereço</H3Address>
+            <Header>
+                <h3>Meu Endereço</h3>
+            </Header>
+            
             <FormAddressContainer onSubmit={putAddress}>
                 
                 <TextField
                     id="outlined-basic"
-                    label="Rua / Av.*"
+                    label="Rua / Av."
                     variant="outlined"
                     helperText=" "
                     size="small"
@@ -56,7 +58,7 @@ const AddressSignUp = () => {
 
                 <TextField 
                     id="outlined-basic" 
-                    label="Número*" 
+                    label="Número" 
                     variant="outlined" 
                     helperText=" " 
                     size="small"
@@ -77,12 +79,11 @@ const AddressSignUp = () => {
                     name="complement"
                     value={form.complement} 
                     onChange={onChange}
-                    required
                 />
 
                 <TextField 
                     id="outlined-basic" 
-                    label="Bairro*" 
+                    label="Bairro" 
                     variant="outlined" 
                     helperText=" " 
                     size="small"
@@ -95,7 +96,7 @@ const AddressSignUp = () => {
 
                 <TextField 
                     id="outlined-basic" 
-                    label="Cidade*" 
+                    label="Cidade" 
                     variant="outlined" 
                     helperText=" " 
                     size="small"
@@ -108,7 +109,7 @@ const AddressSignUp = () => {
                 
                 <TextField 
                     id="outlined-basic" 
-                    label="Estado*" 
+                    label="Estado" 
                     variant="outlined" 
                     helperText=" " 
                     size="small"
