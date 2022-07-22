@@ -6,11 +6,7 @@ import Footer from "../../Constants/Footer";
 import Button from "@mui/material/Button";
 import back from "../../Assets/back.png"
 // imports de estilização
-import { DivBody, Header, BackImgHeader, ContainerInfos, 
-    DivInfosRestaurant, ImgInfosRestaurant, H3InfosRestaurant, 
-    PInfosRestaurant, ShippingAndDelivery, ContainerProducts,
-    DivProducts, ImgProducts, DivInfosProducts, DivBtnProducts,
-    PRestaurantProducts, H3divProducts } from './styles'
+import * as S from './styles'
 
 const RestaurantDetail = () => {
     const navigate = useNavigate()
@@ -24,73 +20,73 @@ const RestaurantDetail = () => {
     const renderDetailsRestaurant = restaurants.map((restaurant) => {
         if (restaurant.id === id) {
             return (
-                <DivInfosRestaurant key={restaurant.id}>
-                    <ImgInfosRestaurant src={restaurant.logoUrl} alt="imagem logomarca" />
-                    <H3InfosRestaurant>{restaurant.name}</H3InfosRestaurant>
-                    <PInfosRestaurant>{restaurant.category}</PInfosRestaurant>
-                    <ShippingAndDelivery>
-                        <PInfosRestaurant>{restaurant.deliveryTime} - {restaurant.deliveryTime + 10} min</PInfosRestaurant>
-                        <PInfosRestaurant>Frete R${restaurant.shipping.toFixed(2).replace(".", ",")}</PInfosRestaurant>
-                    </ShippingAndDelivery>
-                    <PInfosRestaurant>{restaurant.address}</PInfosRestaurant>
-                </DivInfosRestaurant>
+                <S.DivInfosRestaurant key={restaurant.id}>
+                    <S.ImgInfosRestaurant src={restaurant.logoUrl} alt="imagem logomarca" />
+                    <S.H3InfosRestaurant>{restaurant.name}</S.H3InfosRestaurant>
+                    <S.PInfosRestaurant>{restaurant.category}</S.PInfosRestaurant>
+                    <S.ShippingAndDelivery>
+                        <S.PInfosRestaurant>{restaurant.deliveryTime} - {restaurant.deliveryTime + 10} min</S.PInfosRestaurant>
+                        <S.PInfosRestaurant>Frete R${restaurant.shipping.toFixed(2).replace(".", ",")}</S.PInfosRestaurant>
+                    </S.ShippingAndDelivery>
+                    <S.PInfosRestaurant>{restaurant.address}</S.PInfosRestaurant>
+                </S.DivInfosRestaurant>
         )}
     })
 
     const renderMainProducts = restaurantDetails.map((product) => {
         if (product.category !== "Acompanhamento" && product.category !== "Bebida") {
             return (
-                <DivProducts key={product.id}>
-                    <ImgProducts src={product.photoUrl} alt="imagem produto" />
-                    <DivInfosProducts>
-                        <PRestaurantProducts><b>{product.name}</b></PRestaurantProducts>
-                        <PInfosRestaurant>{product.description}</PInfosRestaurant>
+                <S.DivProducts key={product.id}>
+                    <S.ImgProducts src={product.photoUrl} alt="imagem produto" />
+                    <S.DivInfosProducts>
+                        <S.PRestaurantProducts><b>{product.name}</b></S.PRestaurantProducts>
+                        <S.PInfosRestaurant>{product.description}</S.PInfosRestaurant>
                         <p><b>R${product.price.toFixed(2).replace(".", ",")}</b></p>
-                    </DivInfosProducts>
-                    <DivBtnProducts>
+                    </S.DivInfosProducts>
+                    <S.DivBtnProducts>
                         <p></p>
                         <p></p>
                         <Button color="terciary" variant="outlined" disableElevation onClick={() => addProduct(product, id)}>Adicionar</Button>    
-                    </DivBtnProducts>
-                </DivProducts>
+                    </S.DivBtnProducts>
+                </S.DivProducts>
         )}    
     })
 
     const renderSideDish = restaurantDetails.map((product) => {
         if (product.category === "Acompanhamento") {
             return (
-                <DivProducts key={product.id}>
-                    <ImgProducts src={product.photoUrl} alt="imagem produto"/>
-                    <DivInfosProducts>
-                        <PRestaurantProducts><b>{product.name}</b></PRestaurantProducts>
-                        <PInfosRestaurant>{product.description}</PInfosRestaurant>
+                <S.DivProducts key={product.id}>
+                    <S.ImgProducts src={product.photoUrl} alt="imagem produto"/>
+                    <S.DivInfosProducts>
+                        <S.PRestaurantProducts><b>{product.name}</b></S.PRestaurantProducts>
+                        <S.PInfosRestaurant>{product.description}</S.PInfosRestaurant>
                         <p><b>R${product.price.toFixed(2).replace(".", ",")}</b></p>
-                    </DivInfosProducts>
-                    <DivBtnProducts>
+                    </S.DivInfosProducts>
+                    <S.DivBtnProducts>
                         <p></p>
                         <p></p>
                         <Button color="terciary" variant="outlined" disableElevation onClick={() => addProduct(product, id)}>Adicionar</Button>
-                    </DivBtnProducts>
-                </DivProducts>
+                    </S.DivBtnProducts>
+                </S.DivProducts>
         )} 
     })
 
     const renderDrinks = restaurantDetails.map((product) => {
         if (product.category === "Bebida") {
             return ( 
-                <DivProducts key={product.id}>
-                    <ImgProducts src={product.photoUrl} alt="imagem produto"/>
-                    <DivInfosProducts>
-                        <PRestaurantProducts><b>{product.name}</b></PRestaurantProducts>
-                        <PInfosRestaurant>{product.description}</PInfosRestaurant>
+                <S.DivProducts key={product.id}>
+                    <S.ImgProducts src={product.photoUrl} alt="imagem produto"/>
+                    <S.DivInfosProducts>
+                        <S.PRestaurantProducts><b>{product.name}</b></S.PRestaurantProducts>
+                        <S.PInfosRestaurant>{product.description}</S.PInfosRestaurant>
                         <p><b>R${product.price.toFixed(2).replace(".", ",")}</b></p>
-                    </DivInfosProducts>
-                    <DivBtnProducts>
+                    </S.DivInfosProducts>
+                    <S.DivBtnProducts>
                         <p></p>
                         <p></p>
                         <Button color="terciary" variant="outlined" disableElevation onClick={() => addProduct(product, id)}>Adicionar</Button>
-                    </DivBtnProducts>
-                </DivProducts>
+                    </S.DivBtnProducts>
+                </S.DivProducts>
         )} 
     })
 
@@ -107,29 +103,29 @@ const RestaurantDetail = () => {
     })
 
     return (
-        <DivBody>
-            <Header>
-                <BackImgHeader onClick={() => navigate(-1)} src={back}/>
+        <S.DivBody>
+            <S.Header>
+                <S.BackImgHeader onClick={() => navigate(-1)} src={back}/>
                 <h3>Restaurante</h3> 
                 <div></div> 
-            </Header>
+            </S.Header>
     
-            <ContainerInfos>
+            <S.ContainerInfos>
                 {renderDetailsRestaurant}
-            </ContainerInfos>
+            </S.ContainerInfos>
             
-            <ContainerProducts>
-                    <H3divProducts><h3>Principais</h3></H3divProducts>
+            <S.ContainerProducts>
+                    <S.H3divProducts><h3>Principais</h3></S.H3divProducts>
                     {renderMainProducts}
                 
-                    {mapSide.includes(true) && <H3divProducts><h3>Acompanhamentos</h3></H3divProducts>}
+                    {mapSide.includes(true) && <S.H3divProducts><h3>Acompanhamentos</h3></S.H3divProducts>}
                     {renderSideDish}
                     
-                    {mapDrink.includes(true) && <H3divProducts><h3>Bebidas</h3></H3divProducts>}
+                    {mapDrink.includes(true) && <S.H3divProducts><h3>Bebidas</h3></S.H3divProducts>}
                     {renderDrinks}
-            </ContainerProducts>
+            </S.ContainerProducts>
             <Footer/>          
-        </DivBody>
+        </S.DivBody>
     )
 }
 

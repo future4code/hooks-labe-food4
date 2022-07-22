@@ -3,11 +3,7 @@ import GlobalStateContext from "../../Global/GlobalStateContext";
 import Footer from "../../Constants/Footer";
 import { useProtectedPage } from "../../Hooks/useProtectedPage";
 import { Button } from "@mui/material";
-import { Header, ContainerAddress, DivInfos, 
-    H4Infos, ContainerRestaurantAddress, H4InfosRestarant,
-    PInfosRestaurant, ContainerProducts, DivProducts, ImgProducts,
-    DivInfosProducts, DivBtn, DivBtnQtd, BtnQtd, PProduct, PProductName,
-    ContainerSubtotal, DivSubtotal, ContainerSubt, H3Subt, ContainerPayment, H3Payment} from './styles'
+import * as S from "./styles"
 
 const Cart = () => {
     useProtectedPage()
@@ -34,45 +30,45 @@ const Cart = () => {
     const renderAddress = restaurants.map((restaurant) => {
         if (restaurant.id === localStorage.getItem("restaurantId")) {
             return (
-                <DivInfos key={restaurant.id}>
-                   <H4InfosRestarant>{restaurant.name}</H4InfosRestarant>
-                   <PInfosRestaurant>{restaurant.address}</PInfosRestaurant>
-                   <PInfosRestaurant>{restaurant.deliveryTime} - {restaurant.deliveryTime + 10} min</PInfosRestaurant> 
-                </DivInfos>
+                <S.DivInfos key={restaurant.id}>
+                   <S.H4InfosRestarant>{restaurant.name}</S.H4InfosRestarant>
+                   <S.PInfosRestaurant>{restaurant.address}</S.PInfosRestaurant>
+                   <S.PInfosRestaurant>{restaurant.deliveryTime} - {restaurant.deliveryTime + 10} min</S.PInfosRestaurant> 
+                </S.DivInfos>
         )}
     })
 
     const renderCart = cart.map((product) => {
         return (
-            <DivProducts key={product.id}>
-                <ImgProducts src={product.photoUrl}/>
-                <DivInfosProducts>
-                    <PProductName>{product.name}</PProductName>
-                    <PProduct>{product.description}</PProduct>
+            <S.DivProducts key={product.id}>
+                <S.ImgProducts src={product.photoUrl}/>
+                <S.DivInfosProducts>
+                    <S.PProductName>{product.name}</S.PProductName>
+                    <S.PProduct>{product.description}</S.PProduct>
                     <p><b>R${product.price.toFixed(2).replace(".", ",")}</b></p>
-                </DivInfosProducts>
-                <DivBtn>
-                    <DivBtnQtd>
-                        <BtnQtd onClick={() => removeMoreProduct(product)}>-</BtnQtd>
+                </S.DivInfosProducts>
+                <S.DivBtn>
+                    <S.DivBtnQtd>
+                        <S.BtnQtd onClick={() => removeMoreProduct(product)}>-</S.BtnQtd>
                         <p>{product.quantity}</p>
-                        <BtnQtd onClick={() => addMoreProduct(product)}>+</BtnQtd>
-                    </DivBtnQtd>
+                        <S.BtnQtd onClick={() => addMoreProduct(product)}>+</S.BtnQtd>
+                    </S.DivBtnQtd>
                     <Button size="small" color="primary" variant="outlined" onClick={() => removeProduct(product)}>Remover</Button>
-                </DivBtn>
-            </DivProducts>
+                </S.DivBtn>
+            </S.DivProducts>
         )
     })
 
     const renderShipping = restaurants.map((restaurant) => {
         if (restaurant.id === localStorage.getItem("restaurantId")) {
             return (
-                <DivSubtotal key={restaurant.id}>
+                <S.DivSubtotal key={restaurant.id}>
                    <h4>SUBTOTAL</h4>
-                   <ContainerSubt>
+                   <S.ContainerSubt>
                         <p> Frete R${restaurant.shipping},00</p>
-                        <H3Subt>R${sumTotalCart(restaurant.shipping)}</H3Subt>
-                   </ContainerSubt>
-                </DivSubtotal>
+                        <S.H3Subt>R${sumTotalCart(restaurant.shipping)}</S.H3Subt>
+                   </S.ContainerSubt>
+                </S.DivSubtotal>
         )}
     })
 
@@ -88,26 +84,26 @@ const Cart = () => {
 
     return (
         <div>
-            <Header>
+            <S.Header>
                 <h3>Meu carrinho</h3>
-            </Header>
-            <ContainerAddress>
-                <DivInfos>
-                    <H4Infos>Endereço de entrega</H4Infos>
+            </S.Header>
+            <S.ContainerAddress>
+                <S.DivInfos>
+                    <S.H4Infos>Endereço de entrega</S.H4Infos>
                     <p>{profile.address}</p>
-                </DivInfos>
-            </ContainerAddress>
-            <ContainerRestaurantAddress>
+                </S.DivInfos>
+            </S.ContainerAddress>
+            <S.ContainerRestaurantAddress>
                 {renderAddress}
-            </ContainerRestaurantAddress>
-            <ContainerProducts>
+            </S.ContainerRestaurantAddress>
+            <S.ContainerProducts>
                 {cart.length > 0 ? renderCart : delLocalRes()}
-            </ContainerProducts>
-            <ContainerSubtotal>
+            </S.ContainerProducts>
+            <S.ContainerSubtotal>
                 {renderShipping}
-            </ContainerSubtotal>
-            <ContainerPayment>
-                <H3Payment>Forma de pagamento</H3Payment>
+            </S.ContainerSubtotal>
+            <S.ContainerPayment>
+                <S.H3Payment>Forma de pagamento</S.H3Payment>
                 <form>
                     <input 
                         id="money"
@@ -126,7 +122,7 @@ const Cart = () => {
                     <label htmlFor="creditcard" onClick={() => setPaymentMethod("creditcard")}> Cartão de crédito </label>
                 </form>
                 {confirmBtn()}
-            </ContainerPayment>
+            </S.ContainerPayment>
            <Footer/>
         </div>
     )
