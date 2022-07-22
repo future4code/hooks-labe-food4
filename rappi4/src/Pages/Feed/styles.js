@@ -36,21 +36,17 @@ export const CardContainer = styled.div`
 `
 
 export const FoodContainer = styled.div`
-  display: inline-block;
-  padding: 5px;
-  width: 87px;
-  height: 18px;
-  margin: 0 8px;
-  font-family: Roboto;
-  font-size: 16px;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: -0.39px;
-  text-align: center;
-  color: #000;
-`;
+  display: flex;
+  gap: 10px;
+  overflow-y: auto;
+  scrollbar-width: none;
+  margin-left: 7%;
+  margin-right: 7%;
+`
 
+export const PChoosed = styled.p`
+  color: #e86e5a;
+`
 
 export const RestaurantName = styled.h3`
   height: 18px;

@@ -6,7 +6,7 @@ import {
   RestaurantName,DeliveryContainer,
   DeliveryTime,ShippingPrice,
   InputContainer,CardContainer,
-  Header, ContainerRestaurants
+  Header, ContainerRestaurants, PChoosed
 } from "./styles";
 import { TextField } from "@mui/material";
 import { useProtectedPage } from "../../Hooks/useProtectedPage";
@@ -22,13 +22,10 @@ const Feed = () => {
   useEffect(() => {getActiveOrder()}, []);
 
   const renderTypesOfFood = restaurants.map((type, index) => {
-    return (
-      <FoodContainer key={index}>
-        <h4 onClick={() => setSelectedCategory(type.category)}>
-          {type.category}
-        </h4>
-      </FoodContainer>
-    )
+    if (type.category === selectedCategory) {
+      return (<div><PChoosed onClick={() => setSelectedCategory(type.category)}>{type.category}</PChoosed></div>)}
+    
+    else {return(<div><p onClick={() => setSelectedCategory(type.category)}>{type.category}</p></div>)}
   })
 
   const renderRestaurants = restaurants.map((restaurant) => {
@@ -42,8 +39,7 @@ const Feed = () => {
             <ShippingPrice>Frete R$ {restaurant.shipping.toFixed(2).replace(".", ",")}</ShippingPrice>
           </DeliveryContainer>
         </CardContainer>
-      )
-    } 
+      )} 
     
     else if (selectedCategory === "") {
       return (
@@ -56,7 +52,7 @@ const Feed = () => {
           </DeliveryContainer>
         </CardContainer>
       )}
-    })
+  })
 
   const renderActiveOrder = () => {
     if (activeOrder && activeOrder && activeOrder !== null) {
@@ -89,12 +85,16 @@ const Feed = () => {
           variant="outlined"
           helperText=" "
           size="small"
-          placeholder="Restaurante"
+          placeholder="Digite o nome de um restaurante"
           value={selectedCategory}
           onChange={onChangeCategory}
         />
       </InputContainer>
-      {renderTypesOfFood}
+      
+      <FoodContainer>
+          {renderTypesOfFood}
+      </FoodContainer>
+      
       <ContainerRestaurants>
         {renderRestaurants}
       </ContainerRestaurants>

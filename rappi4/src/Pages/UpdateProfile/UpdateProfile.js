@@ -3,9 +3,18 @@ import { BASE_URL } from "../../Constants/url"
 import useForm from "../../Hooks/useForm"
 import { useProtectedPage } from "../../Hooks/useProtectedPage"
 import Footer from "../../Constants/Footer"
+import * as S from "./styles"
+import back from "../../Assets/back.png"
+import { useNavigate } from "react-router-dom"
+import TextField from "@mui/material/TextField"
+import { Button } from "@mui/material"
+import { useContext } from "react"
+import GlobalStateContext from "../../Global/GlobalStateContext"
 
 const UpdateProfile = () => {
     useProtectedPage()
+    const {alertSuccess, alertError} = useContext(GlobalStateContext)
+    const navigate = useNavigate()
     const [form, onChange, cleanFields] = useForm({name: "", email: "", cpf: ""})
 
     const updateProfile = (event) => {
@@ -15,29 +24,44 @@ const UpdateProfile = () => {
         axios
             .put(`${BASE_URL}profile`, form, headers )
             .then(() => {
-                alert("Informações atualizadas")
+                alertSuccess("Conta atualizada com sucesso!")
+                navigate("/perfil")
                 cleanFields()
             })
 
             .catch((error) => {
+                alertError("Algo de errado ocorreu :(")
                 console.log(error)
             })
     }
     
-    console.log(form)
-
     return (
         <div>
-            <h1>Editar perfil</h1>
-            <form onSubmit={updateProfile}>
-                <input
+            <S.Header>
+                <S.BackImgHeader onClick={() => navigate(-1)} src={back}/>
+                <h3>Editar perfil</h3>
+                <div></div>
+            </S.Header>
+           
+            <S.FormAddressContainer onSubmit={updateProfile}>
+                <TextField
+                    id="outlined-basic"
+                    label="Nome"
+                    variant="outlined"
+                    helperText=" "
+                    size="small"
                     placeholder="Digite seu nome"
                     name="name"
                     value={form.name}
                     onChange={onChange}
                     required
                 />
-                <input
+                <TextField
+                    id="outlined-basic"
+                    label="E-mail"
+                    variant="outlined"
+                    helperText=" "
+                    size="small"
                     placeholder="Digite seu e-mail" 
                     name="email" 
                     value={form.email} 
@@ -47,7 +71,12 @@ const UpdateProfile = () => {
                     title="Deve possuir formato de e-mail"
                     required 
                 />
-                <input
+                <TextField
+                    id="outlined-basic"
+                    label="CPF"
+                    variant="outlined"
+                    helperText=" "
+                    size="small"
                     placeholder="000.000.000-00"
                     name="cpf"
                     value={form.cpf}
@@ -56,8 +85,8 @@ const UpdateProfile = () => {
                     title="Deve possuir um CPF válido"
                     required
                 />
-                <button>Salvar</button>
-            </form>
+                <Button type="submit" variant="contained">Salvar</Button>
+            </S.FormAddressContainer>
             <Footer/>
         </div>
     )
