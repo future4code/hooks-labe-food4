@@ -8,14 +8,16 @@ import {
   InputContainer,CardContainer,
   Header, ContainerRestaurants, PChoosed
 } from "./styles";
+import { DivLoader } from "../../Constants/LoaderStyle";
 import { TextField } from "@mui/material";
 import { useProtectedPage } from "../../Hooks/useProtectedPage";
 import { useNavigate } from "react-router-dom";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const Feed = () => {
   useProtectedPage();
   const navigate = useNavigate();
-  const { restaurants, getRestaurants, activeOrder, getActiveOrder } = useContext(GlobalStateContext);
+  const { restaurants, getRestaurants, activeOrder, getActiveOrder, isLoading } = useContext(GlobalStateContext);
   const [selectedCategory, setSelectedCategory] = useState("");
 
   useEffect(() => {getRestaurants()}, []);
@@ -23,9 +25,9 @@ const Feed = () => {
 
   const renderTypesOfFood = restaurants.map((type, index) => {
     if (type.category === selectedCategory) {
-      return (<div><PChoosed onClick={() => setSelectedCategory(type.category)}>{type.category}</PChoosed></div>)}
+      return (<div key={index}><PChoosed onClick={() => setSelectedCategory(type.category)}>{type.category}</PChoosed></div>)}
     
-    else {return(<div><p onClick={() => setSelectedCategory(type.category)}>{type.category}</p></div>)}
+    else {return(<div key={index}><p onClick={() => setSelectedCategory(type.category)}>{type.category}</p></div>)}
   })
 
   const renderRestaurants = restaurants.map((restaurant) => {
@@ -55,7 +57,7 @@ const Feed = () => {
   })
 
   const renderActiveOrder = () => {
-    if (activeOrder && activeOrder && activeOrder !== null) {
+    if (activeOrder && activeOrder !== null && isLoading === false ) {
       return (
         <SnackOrders>
           <h3>Pedido em andamento</h3>
@@ -92,11 +94,11 @@ const Feed = () => {
       </InputContainer>
       
       <FoodContainer>
-          {renderTypesOfFood}
+        {isLoading === false && renderTypesOfFood}
       </FoodContainer>
       
       <ContainerRestaurants>
-        {renderRestaurants}
+        {isLoading === true ? <DivLoader><CircularProgress/></DivLoader>: renderRestaurants}
       </ContainerRestaurants>
       {renderActiveOrder()}
       <Footer/>
