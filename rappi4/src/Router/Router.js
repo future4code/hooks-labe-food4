@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import SplashScreen from "../Pages/SplashScreen/SplashScreen";
 import Login from "../Pages/Login/Login"
 import SignUp from "../Pages/SignUp/SignUp"
 import AddressSignUp from "../Pages/AddressSignUp/AddressSignUp"
@@ -12,7 +13,8 @@ const Router = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route index element={<Login/>}/>
+                <Route index element={<SplashScreen/>}/>
+                <Route path="/login" element={<Login/>}/>
                 <Route path="/cadastro" element={<SignUp/>}/>
                 <Route path="/cadastro-de-endereco" element={<AddressSignUp/>}/>
                 <Route path="/feed" element={<Feed/>}/>
