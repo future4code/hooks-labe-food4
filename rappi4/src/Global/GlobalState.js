@@ -11,6 +11,7 @@ const GlobalState = (props) => {
     const [cart, setCart] = useState([])
     const [activeOrder, setActiveOrder] = useState([])
     const [orderHistory, setOrderHistory] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
 
     // Função para setar alert 
     const alertSuccess = (message) => {
@@ -68,6 +69,7 @@ const GlobalState = (props) => {
             
             .then((response) => {
                 setRestaurants(response.data.restaurants)
+                setIsLoading(false)
             })
 
             .catch((error) => {
@@ -84,6 +86,7 @@ const GlobalState = (props) => {
             
             .then((response) => {
                 setRestaurantDetails(response.data.restaurant.products)
+                setIsLoading(false)
             })
             
             .catch((error) => {
@@ -111,7 +114,7 @@ const GlobalState = (props) => {
             .then(() => {
                 alertSuccess("Pedido confirmado :)")
                 setCart([])
-                localStorage.removeItem("restaurantId")              
+                localStorage.removeItem("restaurantId")           
             })
 
             .catch((error) => {
@@ -150,6 +153,7 @@ const GlobalState = (props) => {
 
         .then((response) => {
             setOrderHistory(response.data.orders)
+            setIsLoading(false)
         })
 
         .catch((error) => {
@@ -259,6 +263,7 @@ const GlobalState = (props) => {
         profile,
         activeOrder,
         orderHistory,
+        isLoading,
        
         // Set States
         setCart,

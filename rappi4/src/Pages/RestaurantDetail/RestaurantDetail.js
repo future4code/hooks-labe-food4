@@ -5,13 +5,15 @@ import { useParams, useNavigate } from "react-router-dom";
 import Footer from "../../Constants/Footer";
 import Button from "@mui/material/Button";
 import back from "../../Assets/back.png"
+import { CircularProgress } from "@mui/material";
 // imports de estilização
 import * as S from './styles'
+import { DivLoader } from "../../Constants/LoaderStyle";
 
 const RestaurantDetail = () => {
     const navigate = useNavigate()
     useProtectedPage()
-    const {restaurants, getRestaurants, restaurantDetails, getRestaurantDetail, addProduct} = useContext(GlobalStateContext)
+    const {restaurants, getRestaurants, restaurantDetails, getRestaurantDetail, addProduct, isLoading} = useContext(GlobalStateContext)
     const {id} = useParams()
     
     useEffect(() => {getRestaurants()}, [])
@@ -116,7 +118,7 @@ const RestaurantDetail = () => {
             
             <S.ContainerProducts>
                     <S.H3divProducts><h3>Principais</h3></S.H3divProducts>
-                    {renderMainProducts}
+                    {isLoading === true ? <DivLoader><CircularProgress/></DivLoader>: renderMainProducts}
                 
                     {mapSide.includes(true) && <S.H3divProducts><h3>Acompanhamentos</h3></S.H3divProducts>}
                     {renderSideDish}

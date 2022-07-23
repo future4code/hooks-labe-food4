@@ -4,12 +4,15 @@ import GlobalStateContext from "../../Global/GlobalStateContext";
 import edit  from "../../Assets/edit.png"
 import { useProtectedPage } from "../../Hooks/useProtectedPage"
 import { useNavigate } from "react-router-dom";
+import { DivLoader } from "../../Constants/LoaderStyle"
+import { CircularProgress }  from "@mui/material";
+// imports de estilização
 import * as S from './styles'
 
 const Profile = () => {
     useProtectedPage()
     const navigate = useNavigate()
-    const { profile, orderHistory, ordersHistory, getProfile } = useContext(GlobalStateContext)
+    const { profile, orderHistory, ordersHistory, getProfile, isLoading } = useContext(GlobalStateContext)
     
     useEffect(() => {ordersHistory()}, [])  
     useEffect(() => {getProfile()}, [])
@@ -47,7 +50,7 @@ const Profile = () => {
                 <S.PTitle>Histórico de pedidos</S.PTitle>
             </S.DivTitleHist>
             <S.DivRenderOrders>
-                {renderOrders}
+                {isLoading === true ? <DivLoader><CircularProgress/></DivLoader> : renderOrders}
             </S.DivRenderOrders>
             <Footer/>
         </div>

@@ -3,7 +3,8 @@ import GlobalStateContext from "../../Global/GlobalStateContext";
 import Footer from "../../Constants/Footer";
 import { useProtectedPage } from "../../Hooks/useProtectedPage";
 import { Button } from "@mui/material";
-import * as S from "./styles"
+// imports de estilização
+import * as S from "./styles";
 
 const Cart = () => {
     useProtectedPage()
@@ -74,7 +75,7 @@ const Cart = () => {
 
     const confirmBtn = () => {
         if (cart.length <= 0) {
-            return <Button onClick={() => alertError("O carrinho está vazio")} color="secondary" variant="contained">Confirmar</Button>
+            return <Button onClick={() => alertError("O carrinho está vazio")} variant="contained" color="secondary">Confirmar</Button>
         }
 
         else if (cart.length > 0) {
