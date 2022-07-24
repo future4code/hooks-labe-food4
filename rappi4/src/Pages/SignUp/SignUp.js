@@ -3,6 +3,10 @@ import axios from "axios";
 import { BASE_URL } from "../../Constants/url"
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import back from "../../Assets/back.png"
+// imports de estilização
+import * as S from './styles'
+import logo from "../../Assets/logo-future-eats-invert.png"
 
 const SignUp = () => {
     const navigate = useNavigate()
@@ -38,7 +42,16 @@ const SignUp = () => {
 
     return (
         <div>
-            <h1>SignUp</h1>
+            <S.Header>
+            <S.BackImgHeader onClick={() => navigate(-1)} src={back}/>
+            </S.Header>
+
+            <S.DivImg>
+                <img src={logo} />
+            </S.DivImg>
+
+            <S.DivTitle>Cadastrar</S.DivTitle>
+
             <form onSubmit={confirmPassword}>
                 <input
                     placeholder="Nome e sobrenome"
