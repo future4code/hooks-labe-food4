@@ -1,8 +1,10 @@
 import useForm from "../../Hooks/useForm";
 import axios from "axios";
 import { BASE_URL } from "../../Constants/url"
-import { useNavigate } from "react-router-dom";
-import { Button } from "@mui/material";
+import { useNavigate, Link } from "react-router-dom";
+import { Button, TextField } from "@mui/material";
+import { FormLoginContainer, Header, Footer, DivImg } from "./Styles";
+import logo from "../../Assets/logo-future-eats-invert.png"
 
 const Login = () => {
     const navigate = useNavigate()
@@ -28,12 +30,21 @@ const Login = () => {
                 cleanFields()
             })}
 
+            
+
     return (
         <div>
-            <h1>Login</h1>
-            <form onSubmit={postLogin}>
-                <input 
+            
+            <DivImg>
+            <img src={logo}/>
+            </DivImg>
+            <Header>Entrar</Header>
+            < FormLoginContainer onSubmit={postLogin}>
+                <TextField 
+               
+                    label = "Email"
                     placeholder="Digite seu e-mail" 
+                    margin="normal"
                     name="email" 
                     value={form.email} 
                     onChange={onChange}
@@ -42,17 +53,22 @@ const Login = () => {
                     title="Deve possuir formato de e-mail"
                     required 
                 />
-                <input 
-                    placeholder="Digite sua senha" 
+                
+                <TextField 
+                    label = "Senha"
+                    placeholder="Digite sua senha"
+                    margin="normal"
+                    helperText=" "  
                     name="password"
                     value={form.password} 
                     onChange={onChange}
                     type="password"
                     required 
                 />
-                <Button type="submit" color="primary" variant="outlined">Entrar</Button>
-            </form>
-            <Button color="primary" variant="contained" onClick={() => navigate("/cadastro")}>Cadastre-se</Button>
+                <Button type="submit" color="primary" variant="contained">Entrar</Button>
+            </FormLoginContainer>
+            
+            <Footer>Não possui cadastro?<Link to="/cadastro"> Clique aqui</Link></Footer>
         </div>
     )
 }
