@@ -24,7 +24,11 @@ export const DivImg  = styled.div`
 export const DivTitle = styled.div`
     display: flex;
     justify-content: center;
-    padding-top: 6%;
-    padding-bottom: 3%;
+    padding-top: 30px;
 `
-
+// Estilização Form
+export const FormLoginContainer = styled.form`
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+`

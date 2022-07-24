@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import back from "../../Assets/back.png"
 // imports de estilização
+import { Button, TextField } from "@mui/material";
 import * as S from './styles'
 import logo from "../../Assets/logo-future-eats-invert.png"
 
@@ -52,17 +53,20 @@ const SignUp = () => {
 
             <S.DivTitle>Cadastrar</S.DivTitle>
 
-            <form onSubmit={confirmPassword}>
-                <input
+            <S.FormLoginContainer onSubmit={confirmPassword}>
+                <TextField 
+                    label="Nome"
+                    margin="normal"
                     placeholder="Nome e sobrenome"
                     name="name"
                     value={form.name}
                     onChange={onChange}
                     required
                 />
-                <input
+                <TextField 
                     placeholder="email@email.com"
                     name="email" 
+                    margin="normal"
                     value={form.email} 
                     onChange={onChange}
                     type="email"
@@ -70,8 +74,9 @@ const SignUp = () => {
                     title="Deve possuir formato de e-mail"
                     required 
                 />
-                <input
+                <TextField 
                     placeholder="000.000.000-00"
+                    margin="normal"
                     name="cpf"
                     value={form.cpf}
                     onChange={onChange}
@@ -79,9 +84,10 @@ const SignUp = () => {
                     title="Deve possuir um CPF válido"
                     required
                 />
-                <input
+                <TextField 
                     placeholder="Mínimo 6 caracteres"
                     name="password"
+                    margin="normal"
                     value={form.password}
                     onChange={onChange}
                     type="password"
@@ -89,14 +95,16 @@ const SignUp = () => {
                     title="Senha inválida"
                     required
                 />
-                <input
+                <TextField 
                     placeholder="Confirme a senha anterior"
+                    margin="normal"
+                    helperText=" "  
                     type="password"
                     onChange={onMatch2Pass}
                     value={secondPass}
                 />
-                <button>Criar</button>
-            </form>
+                <Button type="submit" color="primary" variant="contained">Criar</Button>
+            </S.FormLoginContainer>
         </div>
     )
 }
