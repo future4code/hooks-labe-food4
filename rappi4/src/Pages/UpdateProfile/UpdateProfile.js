@@ -81,7 +81,7 @@ const UpdateProfile = () => {
                     name="cpf"
                     value={form.cpf}
                     onChange={onChange}
-                    pattern="([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})"
+                    inputProps={{ inputMode: 'numeric', pattern: '([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})'}}
                     title="Deve possuir um CPF válido"
                     required
                 />
