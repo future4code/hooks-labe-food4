@@ -4,7 +4,7 @@ import { BASE_URL } from "../../Constants/url"
 import { useNavigate } from "react-router-dom";
 import { useProtectedPage } from "../../Hooks/useProtectedPage";
 import { Button, TextField } from "@mui/material";
-import {FormAddressContainer, Header} from './Styles'
+import {FormAddressContainer, Header} from './styles'
 import GlobalStateContext from "../../Global/GlobalStateContext";
 import { useContext } from "react";
 

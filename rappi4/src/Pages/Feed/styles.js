@@ -28,7 +28,7 @@ export const ImageSize = styled.img`
 export const CardContainer = styled.div`
   display:flex;
   flex-direction: column;
-  width:90%;
+  width: 90%;
   margin:auto;
   border-radius: 15px;
   border: 1px solid #b8b8b8;
