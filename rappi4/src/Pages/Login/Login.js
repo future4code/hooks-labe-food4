@@ -4,7 +4,7 @@ import { BASE_URL } from "../../Constants/url"
 import { useNavigate, Link } from "react-router-dom";
 // imports de estilização
 import { Button, TextField } from "@mui/material";
-import { FormLoginContainer, Footer, DivImg } from "./Styles";
+import { FormLoginContainer, Footer, DivImg } from "./styles";
 import logo from "../../Assets/logo-future-eats-invert.png"
 
 const Login = () => {

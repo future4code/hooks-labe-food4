@@ -1,13 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import GlobalStateContext from "../../Global/GlobalStateContext";
 import Footer from "../../Constants/Footer";
-import {
-  ImageSize, FoodContainer,SnackOrders,
-  RestaurantName,DeliveryContainer,
-  DeliveryTime,ShippingPrice,
-  InputContainer,CardContainer,
-  Header, ContainerRestaurants, PChoosed
-} from "./styles";
+import * as S from "./styles";
 import { DivLoader } from "../../Constants/LoaderStyle";
 import { TextField } from "@mui/material";
 import { useProtectedPage } from "../../Hooks/useProtectedPage";
@@ -17,70 +11,110 @@ import CircularProgress from "@mui/material/CircularProgress";
 const Feed = () => {
   useProtectedPage();
   const navigate = useNavigate();
-  const { restaurants, getRestaurants, activeOrder, getActiveOrder, isLoading } = useContext(GlobalStateContext);
+  const {
+    restaurants,
+    getRestaurants,
+    activeOrder,
+    getActiveOrder,
+    isLoading,
+  } = useContext(GlobalStateContext);
   const [selectedCategory, setSelectedCategory] = useState("");
 
-  useEffect(() => {getRestaurants()}, []);
-  useEffect(() => {getActiveOrder()}, []);
+  useEffect(() => {
+    getRestaurants();
+  }, []);
+  useEffect(() => {
+    getActiveOrder();
+  }, []);
 
   const renderTypesOfFood = restaurants.map((type, index) => {
     if (type.category === selectedCategory) {
-      return (<div key={index}><PChoosed onClick={() => setSelectedCategory(type.category)}>{type.category}</PChoosed></div>)}
-    
-    else {return(<div key={index}><p onClick={() => setSelectedCategory(type.category)}>{type.category}</p></div>)}
-  })
+      return (
+        <div key={index}>
+          <S.PChoosed onClick={() => setSelectedCategory(type.category)}>
+            {type.category}
+          </S.PChoosed>
+        </div>
+      );
+    } else {
+      return (
+        <div key={index}>
+          <p onClick={() => setSelectedCategory(type.category)}>
+            {type.category}
+          </p>
+        </div>
+      );
+    }
+  });
 
   const renderRestaurants = restaurants.map((restaurant) => {
-    if (restaurant.category === selectedCategory || restaurant.name === selectedCategory) {
+    if (
+      restaurant.category === selectedCategory ||
+      restaurant.name === selectedCategory
+    ) {
       return (
-        <CardContainer key={restaurant.id} onClick={() => chooseRestaurant(restaurant.id)}>
-          <ImageSize src={restaurant.logoUrl} alt="imagem logomarca" />
-          <RestaurantName>{restaurant.name}</RestaurantName>
-          <DeliveryContainer>
-            <DeliveryTime>{restaurant.deliveryTime} min</DeliveryTime>
-            <ShippingPrice>Frete R$ {restaurant.shipping.toFixed(2).replace(".", ",")}</ShippingPrice>
-          </DeliveryContainer>
-        </CardContainer>
-      )} 
-    
-    else if (selectedCategory === "") {
+        <S.CardContainer
+          key={restaurant.id}
+          onClick={() => chooseRestaurant(restaurant.id)}
+        >
+          <S.ImageSize src={restaurant.logoUrl} alt="imagem logomarca" />
+          <S.RestaurantName>{restaurant.name}</S.RestaurantName>
+          <S.DeliveryContainer>
+            <S.DeliveryTime>{restaurant.deliveryTime} min</S.DeliveryTime>
+            <S.ShippingPrice>
+              Frete R$ {restaurant.shipping.toFixed(2).replace(".", ",")}
+            </S.ShippingPrice>
+          </S.DeliveryContainer>
+        </S.CardContainer>
+      );
+    } else if (selectedCategory === "") {
       return (
-        <CardContainer key={restaurant.id} onClick={() => chooseRestaurant(restaurant.id)}>
-          <ImageSize src={restaurant.logoUrl} alt="imagem logomarca" />
-          <RestaurantName>{restaurant.name}</RestaurantName>
-          <DeliveryContainer>
-            <DeliveryTime>{restaurant.deliveryTime} min</DeliveryTime>
-            <ShippingPrice>Frete R$ {restaurant.shipping.toFixed(2).replace(".", ",")}</ShippingPrice>
-          </DeliveryContainer>
-        </CardContainer>
-      )}
-  })
+        <S.CardContainer
+          key={restaurant.id}
+          onClick={() => chooseRestaurant(restaurant.id)}
+        >
+          <S.ImageSize src={restaurant.logoUrl} alt="imagem logomarca" />
+          <S.RestaurantName>{restaurant.name}</S.RestaurantName>
+          <S.DeliveryContainer>
+            <S.DeliveryTime>{restaurant.deliveryTime} min</S.DeliveryTime>
+            <S.ShippingPrice>
+              Frete R$ {restaurant.shipping.toFixed(2).replace(".", ",")}
+            </S.ShippingPrice>
+          </S.DeliveryContainer>
+        </S.CardContainer>
+      );
+    }
+  });
 
   const renderActiveOrder = () => {
-    if (activeOrder && activeOrder !== null && isLoading === false ) {
+    if (activeOrder && activeOrder !== null && isLoading === false) {
       return (
-        <SnackOrders>
+        <S.SnackOrders>
           <h3>Pedido em andamento</h3>
           <p>{activeOrder.restaurantName}</p>
-          <p><b>SUBTOTAL R$</b>{activeOrder.totalPrice}</p>
-        </SnackOrders>
-    )}
-  }
+          <p>
+            <b>SUBTOTAL R$</b>
+            {activeOrder.totalPrice}
+          </p>
+        </S.SnackOrders>
+      );
+    }
+  };
 
   const onChangeCategory = (event) => {
-    setSelectedCategory(event.target.value)
-  }
+    setSelectedCategory(event.target.value);
+  };
 
   const chooseRestaurant = (param) => {
-    navigate(`/feed/restaurante/${param}`)
-  }
+    navigate(`/feed/restaurante/${param}`);
+  };
 
   return (
     <div>
-      <Header>
+      <S.Header>
         <h3>Feed</h3>
-      </Header>
-      <InputContainer>
+      </S.Header>
+      <S.InputContainer>
         <TextField
           id="outlined-basic"
           label="Restaurante"
@@ -91,19 +125,25 @@ const Feed = () => {
           value={selectedCategory}
           onChange={onChangeCategory}
         />
-      </InputContainer>
-      
-      <FoodContainer>
+      </S.InputContainer>
+
+      <S.FoodContainer>
         {isLoading === false && renderTypesOfFood}
-      </FoodContainer>
-      
-      <ContainerRestaurants>
-        {isLoading === true ? <DivLoader><CircularProgress/></DivLoader>: renderRestaurants}
-      </ContainerRestaurants>
+      </S.FoodContainer>
+
+      <S.ContainerRestaurants>
+        {isLoading === true ? (
+          <DivLoader>
+            <CircularProgress />
+          </DivLoader>
+        ) : (
+          renderRestaurants
+        )}
+      </S.ContainerRestaurants>
       {renderActiveOrder()}
-      <Footer/>
+      <Footer />
     </div>
-  )
-}
+  );
+};
 
 export default Feed;
