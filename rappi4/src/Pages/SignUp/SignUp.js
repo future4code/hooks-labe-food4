@@ -51,8 +51,6 @@ const SignUp = () => {
                 <img src={logo} />
             </S.DivImg>
 
-            <S.DivTitle>Cadastrar</S.DivTitle>
-
             <S.FormLoginContainer onSubmit={confirmPassword}>
                 <TextField 
                     label="Nome"
@@ -64,6 +62,7 @@ const SignUp = () => {
                     required
                 />
                 <TextField 
+                    label="E-mail"
                     placeholder="email@email.com"
                     name="email" 
                     margin="normal"
@@ -74,7 +73,8 @@ const SignUp = () => {
                     title="Deve possuir formato de e-mail"
                     required 
                 />
-                <TextField 
+                <TextField
+                    label="CPF" 
                     placeholder="000.000.000-00"
                     margin="normal"
                     name="cpf"
@@ -85,6 +85,7 @@ const SignUp = () => {
                     required
                 />
                 <TextField 
+                    label="Senha"
                     placeholder="Mínimo 6 caracteres"
                     name="password"
                     margin="normal"
@@ -95,7 +96,8 @@ const SignUp = () => {
                     title="Senha inválida"
                     required
                 />
-                <TextField 
+                <TextField
+                    label="Senha" 
                     placeholder="Confirme a senha anterior"
                     margin="normal"
                     helperText=" "  

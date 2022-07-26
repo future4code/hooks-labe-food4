@@ -4,7 +4,7 @@ import { BASE_URL } from "../../Constants/url"
 import { useNavigate, Link } from "react-router-dom";
 // imports de estilização
 import { Button, TextField } from "@mui/material";
-import { FormLoginContainer, Header, Footer, DivImg } from "./Styles";
+import { FormLoginContainer, Footer, DivImg } from "./Styles";
 import logo from "../../Assets/logo-future-eats-invert.png"
 
 const Login = () => {
@@ -31,15 +31,13 @@ const Login = () => {
                 cleanFields()
             })}
 
-            
-
+        
     return (
         <div>
-            
             <DivImg>
             <img src={logo}/>
             </DivImg>
-            <Header>Entrar</Header>
+            
             < FormLoginContainer onSubmit={postLogin}>
                 <TextField 
                
