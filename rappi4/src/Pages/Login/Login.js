@@ -2,6 +2,9 @@ import useForm from "../../Hooks/useForm";
 import axios from "axios";
 import { BASE_URL } from "../../Constants/url"
 import { useNavigate, Link } from "react-router-dom";
+import { useContext } from "react";
+import GlobalStateContext from "../../Global/GlobalStateContext";
+import { CircularProgress } from "@mui/material";
 // imports de estilização
 import { Button, TextField } from "@mui/material";
 import { FormLoginContainer, Footer, DivImg } from "./styles";
@@ -10,6 +13,7 @@ import logo from "../../Assets/logo-future-eats-invert.png"
 const Login = () => {
     const navigate = useNavigate()
     const [form, onChange, cleanFields] = useForm({email: "", password: ""})
+    const { isLoading, setIsLoading } = useContext(GlobalStateContext)
 
     const postLogin = (event) => {
         event.preventDefault()
@@ -18,11 +22,11 @@ const Login = () => {
 
             .then((response) => {
                 localStorage.setItem("token", response.data.token)
-                
                 if (response.data.user.hasAddress === true) { navigate("/feed") }
                 
                 else { navigate("/cadastro-de-endereco") }
                 
+                setIsLoading(false)
                 cleanFields()
             })
             
@@ -30,8 +34,7 @@ const Login = () => {
                 console.log(error.message)
                 cleanFields()
             })}
-
-        
+ 
     return (
         <div>
             <DivImg>
@@ -40,7 +43,6 @@ const Login = () => {
             
             < FormLoginContainer onSubmit={postLogin}>
                 <TextField 
-               
                     label = "Email"
                     placeholder="Digite seu e-mail" 
                     margin="normal"
@@ -64,9 +66,8 @@ const Login = () => {
                     type="password"
                     required 
                 />
-                <Button type="submit" color="primary" variant="contained">Entrar</Button>
+                <Button type="submit" color="primary" variant="contained">{isLoading === false ? <CircularProgress size={24} color="inherit"/>: <p>Entrar</p>}</Button>
             </FormLoginContainer>
-            
             <Footer>Não possui cadastro?<Link to="/cadastro"> Clique aqui</Link></Footer>
         </div>
     )

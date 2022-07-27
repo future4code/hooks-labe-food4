@@ -42,7 +42,6 @@ const AddressSignUp = () => {
             </Header>
             
             <FormAddressContainer onSubmit={putAddress}>
-        
                 <TextField
                     id="outlined-basic"
                     label="Rua / Av."
@@ -119,7 +118,6 @@ const AddressSignUp = () => {
                     onChange={onChange}
                     required
                 />
-
                 <Button type="submit" color="primary" variant="contained">Enviar</Button>
             </FormAddressContainer>
         </div>
