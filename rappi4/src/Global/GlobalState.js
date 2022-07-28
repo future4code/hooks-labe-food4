@@ -268,6 +268,7 @@ const GlobalState = (props) => {
         // Set States
         setCart,
         setRestaurants,
+        setIsLoading,
         
         // Request
         getProfile,
@@ -283,7 +284,8 @@ const GlobalState = (props) => {
         addMoreProduct,
         removeMoreProduct,
         alertSuccess,
-        alertError
+        alertError,
+        alertWarning
     }
 
     return (

@@ -11,80 +11,53 @@ import CircularProgress from "@mui/material/CircularProgress";
 const Feed = () => {
   useProtectedPage();
   const navigate = useNavigate();
-  const {
-    restaurants,
-    getRestaurants,
-    activeOrder,
-    getActiveOrder,
-    isLoading,
-  } = useContext(GlobalStateContext);
+  const {restaurants, getRestaurants, activeOrder, getActiveOrder, isLoading} = useContext(GlobalStateContext);
   const [selectedCategory, setSelectedCategory] = useState("");
 
-  useEffect(() => {
-    getRestaurants();
-  }, []);
-  useEffect(() => {
-    getActiveOrder();
-  }, []);
+  useEffect(() => {getRestaurants()}, []);
+  useEffect(() => {getActiveOrder()}, []);
 
   const renderTypesOfFood = restaurants.map((type, index) => {
     if (type.category === selectedCategory) {
       return (
         <div key={index}>
-          <S.PChoosed onClick={() => setSelectedCategory(type.category)}>
-            {type.category}
-          </S.PChoosed>
+          <S.PChoosed onClick={() => setSelectedCategory(type.category)}>{type.category}</S.PChoosed>
         </div>
-      );
-    } else {
+    )} 
+    
+    else {
       return (
         <div key={index}>
-          <p onClick={() => setSelectedCategory(type.category)}>
-            {type.category}
-          </p>
+          <p onClick={() => setSelectedCategory(type.category)}>{type.category}</p>
         </div>
-      );
-    }
-  });
+    )}
+  })
 
   const renderRestaurants = restaurants.map((restaurant) => {
-    if (
-      restaurant.category === selectedCategory ||
-      restaurant.name === selectedCategory
-    ) {
+    if (restaurant.category === selectedCategory || restaurant.name === selectedCategory) {
       return (
-        <S.CardContainer
-          key={restaurant.id}
-          onClick={() => chooseRestaurant(restaurant.id)}
-        >
+        <S.CardContainer key={restaurant.id} onClick={() => chooseRestaurant(restaurant.id)}>
           <S.ImageSize src={restaurant.logoUrl} alt="imagem logomarca" />
           <S.RestaurantName>{restaurant.name}</S.RestaurantName>
           <S.DeliveryContainer>
             <S.DeliveryTime>{restaurant.deliveryTime} min</S.DeliveryTime>
-            <S.ShippingPrice>
-              Frete R$ {restaurant.shipping.toFixed(2).replace(".", ",")}
-            </S.ShippingPrice>
+            <S.ShippingPrice>Frete R$ {restaurant.shipping.toFixed(2).replace(".", ",")}</S.ShippingPrice>
           </S.DeliveryContainer>
         </S.CardContainer>
-      );
-    } else if (selectedCategory === "") {
+    )} 
+    
+    else if (selectedCategory === "") {
       return (
-        <S.CardContainer
-          key={restaurant.id}
-          onClick={() => chooseRestaurant(restaurant.id)}
-        >
+        <S.CardContainer key={restaurant.id} onClick={() => chooseRestaurant(restaurant.id)}>
           <S.ImageSize src={restaurant.logoUrl} alt="imagem logomarca" />
           <S.RestaurantName>{restaurant.name}</S.RestaurantName>
           <S.DeliveryContainer>
             <S.DeliveryTime>{restaurant.deliveryTime} min</S.DeliveryTime>
-            <S.ShippingPrice>
-              Frete R$ {restaurant.shipping.toFixed(2).replace(".", ",")}
-            </S.ShippingPrice>
+            <S.ShippingPrice>Frete R$ {restaurant.shipping.toFixed(2).replace(".", ",")}</S.ShippingPrice>
           </S.DeliveryContainer>
         </S.CardContainer>
-      );
-    }
-  });
+      )}
+    })
 
   const renderActiveOrder = () => {
     if (activeOrder && activeOrder !== null && isLoading === false) {
@@ -92,22 +65,18 @@ const Feed = () => {
         <S.SnackOrders>
           <h3>Pedido em andamento</h3>
           <p>{activeOrder.restaurantName}</p>
-          <p>
-            <b>SUBTOTAL R$</b>
-            {activeOrder.totalPrice}
-          </p>
+          <p><b>SUBTOTAL R$</b>{activeOrder.totalPrice}</p>
         </S.SnackOrders>
-      );
-    }
-  };
+    )}
+  }
 
   const onChangeCategory = (event) => {
-    setSelectedCategory(event.target.value);
-  };
+    setSelectedCategory(event.target.value)
+  }
 
   const chooseRestaurant = (param) => {
-    navigate(`/feed/restaurante/${param}`);
-  };
+    navigate(`/feed/restaurante/${param}`)
+  }
 
   return (
     <div>
@@ -132,18 +101,11 @@ const Feed = () => {
       </S.FoodContainer>
 
       <S.ContainerRestaurants>
-        {isLoading === true ? (
-          <DivLoader>
-            <CircularProgress />
-          </DivLoader>
-        ) : (
-          renderRestaurants
-        )}
+        {isLoading === true ? (<DivLoader><CircularProgress/></DivLoader>) : (renderRestaurants)}
       </S.ContainerRestaurants>
       {renderActiveOrder()}
-      <Footer />
+      <Footer/>
     </div>
-  );
-};
+  )}
 
 export default Feed;

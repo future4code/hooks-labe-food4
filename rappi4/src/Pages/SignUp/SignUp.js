@@ -2,8 +2,10 @@ import useForm from "../../Hooks/useForm";
 import axios from "axios";
 import { BASE_URL } from "../../Constants/url"
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import back from "../../Assets/back.png"
+import GlobalStateContext from "../../Global/GlobalStateContext";
+import { CircularProgress } from "@mui/material";
 // imports de estilização
 import { Button, TextField } from "@mui/material";
 import * as S from './styles'
@@ -13,18 +15,20 @@ const SignUp = () => {
     const navigate = useNavigate()
     const [form, onChange, cleanFields] = useForm({name: "", email: "", cpf: "", password: ""})
     const [secondPass, setSecondPass] = useState("")
+    const {alertSuccess, alertError, isLoading, alertWarning, setIsLoading} = useContext(GlobalStateContext)
 
     const postSignUp = () => {
         axios
             .post(`${BASE_URL}signup`, form)
             .then((response) => {
-                alert("Conta cadastrada com sucesso")
+                alertSuccess("Conta cadastrada com sucesso")
+                setIsLoading(false)
                 localStorage.setItem("token", response.data.token)
                 navigate("/cadastro-de-endereco")
                 cleanFields() 
             })
             .catch((error) => {
-                alert("Algo deu errado :(")
+                alertError("Algo deu errado :(")
                 console.log(error.message)
     })}
 
@@ -38,7 +42,7 @@ const SignUp = () => {
             postSignUp()
         }
         else {
-            alert("As senhas não são identicas")
+            alertWarning("As senhas não são idênticas")
     }}
 
     return (
@@ -105,7 +109,7 @@ const SignUp = () => {
                     onChange={onMatch2Pass}
                     value={secondPass}
                 />
-                <Button type="submit" color="primary" variant="contained">Criar</Button>
+                <Button type="submit" color="primary" variant="contained">{isLoading === false ? <CircularProgress size={24} color="inherit"/>: <p>Criar</p>}</Button>
             </S.FormLoginContainer>
         </div>
     )
