@@ -5,8 +5,12 @@ export const Header = styled.header`
   display: flex;
   align-items: center;
   padding: 15px;
-  justify-content: center;
+  justify-content: space-around;
   border-bottom: 1px solid #d3d3d3;
+`
+export const ImgLogout = styled.img`
+  width: 26px;
+  cursor: pointer;
 `
 //estilização da barra de comidas
 export const FoodContainer = styled.div`

@@ -13,7 +13,7 @@ import logo from "../../Assets/logo-future-eats-invert.png"
 const Login = () => {
     const navigate = useNavigate()
     const [form, onChange, cleanFields] = useForm({email: "", password: ""})
-    const { isLoading, setIsLoading } = useContext(GlobalStateContext)
+    const { isLoading, setIsLoading, alertError } = useContext(GlobalStateContext)
 
     const postLogin = (event) => {
         event.preventDefault()
@@ -31,6 +31,7 @@ const Login = () => {
             })
             
             .catch((error) => {
+                alertError("Algo deu errado :(")
                 console.log(error.message)
                 cleanFields()
             })}
@@ -38,7 +39,7 @@ const Login = () => {
     return (
         <div>
             <DivImg>
-            <img src={logo}/>
+            <img src={logo} alt="logo rappi4"/>
             </DivImg>
             
             < FormLoginContainer onSubmit={postLogin}>

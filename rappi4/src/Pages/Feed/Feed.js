@@ -7,11 +7,12 @@ import { TextField } from "@mui/material";
 import { useProtectedPage } from "../../Hooks/useProtectedPage";
 import { useNavigate } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
+import exitIcon from "../../Assets/exit-icon.svg";
 
 const Feed = () => {
   useProtectedPage();
   const navigate = useNavigate();
-  const {restaurants, getRestaurants, activeOrder, getActiveOrder, isLoading} = useContext(GlobalStateContext);
+  const {restaurants, getRestaurants, activeOrder, getActiveOrder, isLoading, setIsLoading} = useContext(GlobalStateContext);
   const [selectedCategory, setSelectedCategory] = useState("");
 
   useEffect(() => {getRestaurants()}, []);
@@ -78,10 +79,20 @@ const Feed = () => {
     navigate(`/feed/restaurante/${param}`)
   }
 
+  const logout = () => {
+    localStorage.removeItem("token")
+    localStorage.removeItem("page")
+    localStorage.removeItem("restaurantId")
+    setIsLoading(true)
+    navigate("/") 
+  }
+
   return (
     <div>
       <S.Header>
+        <p></p>
         <h3>Feed</h3>
+        <S.ImgLogout onClick={() => logout()} src={exitIcon} alt="icone de sair"/>
       </S.Header>
       <S.InputContainer>
         <TextField

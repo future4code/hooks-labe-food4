@@ -34,7 +34,7 @@ const Profile = () => {
             <S.DivInfos>
                 <S.DivImg>
                     <p>{profile.name}</p>
-                    <img src={edit} onClick={() => navigate("/perfil/atualizar-perfil")}/>
+                    <img src={edit} onClick={() => navigate("/perfil/atualizar-perfil")} alt="icone lápis"/>
                 </S.DivImg>
                 <p>{profile.email}</p>
                 <p>{profile.cpf}</p>
@@ -43,7 +43,7 @@ const Profile = () => {
                 <S.PEndereco>Endereço cadastrado</S.PEndereco>
                 <S.DivImg>
                     <p>{profile.address}</p>
-                    <img src={edit} onClick={() => navigate("/cadastro-de-endereco")}/>
+                    <img src={edit} onClick={() => navigate("/cadastro-de-endereco")} alt="icone lápis"/>
                 </S.DivImg>
             </S.DivEndereco>
             <S.DivTitleHist>

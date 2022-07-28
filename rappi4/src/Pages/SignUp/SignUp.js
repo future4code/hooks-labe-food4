@@ -52,7 +52,7 @@ const SignUp = () => {
             </S.Header>
 
             <S.DivImg>
-                <img src={logo} />
+                <img src={logo} alt="logo rappi4"/>
             </S.DivImg>
 
             <S.FormLoginContainer onSubmit={confirmPassword}>
