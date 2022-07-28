@@ -23,7 +23,7 @@ const RestaurantDetail = () => {
         if (restaurant.id === id) {
             return (
                 <S.DivInfosRestaurant key={restaurant.id}>
-                    <S.ImgInfosRestaurant src={restaurant.logoUrl} alt="imagem logomarca" />
+                    <S.ImgInfosRestaurant src={restaurant.logoUrl} alt="imagem logomarca"/>
                     <S.H3InfosRestaurant>{restaurant.name}</S.H3InfosRestaurant>
                     <S.PInfosRestaurant>{restaurant.category}</S.PInfosRestaurant>
                     <S.ShippingAndDelivery>
@@ -39,7 +39,7 @@ const RestaurantDetail = () => {
         if (product.category !== "Acompanhamento" && product.category !== "Bebida") {
             return (
                 <S.DivProducts key={product.id}>
-                    <S.ImgProducts src={product.photoUrl} alt="imagem produto" />
+                    <S.ImgProducts src={product.photoUrl} alt="imagem produto"/>
                     <S.DivInfosProducts>
                         <S.PRestaurantProducts><b>{product.name}</b></S.PRestaurantProducts>
                         <S.PInfosRestaurant>{product.description}</S.PInfosRestaurant>
@@ -107,7 +107,7 @@ const RestaurantDetail = () => {
     return (
         <S.DivBody>
             <S.Header>
-                <S.BackImgHeader onClick={() => navigate(-1)} src={back}/>
+                <S.BackImgHeader onClick={() => navigate(-1)} src={back} alt="icone de voltar"/>
                 <h3>Restaurante</h3> 
                 <div></div> 
             </S.Header>
