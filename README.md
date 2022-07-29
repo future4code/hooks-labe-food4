@@ -25,17 +25,27 @@
 <p>• 💻 Outros dispositivos ⏳</p>
 
 <h2>🖥 Imagens responsividade Mobile<h2>
-<img src="https://i.imgur.com/rP5Rpmx.png"/>
-<img src="https://i.imgur.com/eWGrFYm.png"/>
-<img src="https://i.imgur.com/Truwyhe.png"/>
-<img src="https://i.imgur.com/DyOljPy.png"/>
-<img src="https://i.imgur.com/JaNZUA1.png"/>
-<img src="https://i.imgur.com/jzL7Yn5.png"/>
-<img src="https://i.imgur.com/tkWdxzo.png"/>
-<img src="https://i.imgur.com/Cmm6SIt.png"/>
-<img src="https://i.imgur.com/r56PraA.png"/>
-<img src="https://i.imgur.com/FKeXAZ3.png"/>
-<img src="https://i.imgur.com/Ml88dGl.png"/>
+<img src="https://i.imgur.com/niseBad.png"/>
+<br></br>
+<img src="https://i.imgur.com/p6wlUyH.png"/>
+<br></br>
+<img src="https://i.imgur.com/F8c0oXk.png"/>
+<br></br>
+<img src="https://i.imgur.com/HALm9vs.png"/>
+<br></br>
+<img src="https://i.imgur.com/OwMMoii.png"/>
+<br></br>
+<img src="https://i.imgur.com/Nhdy5Nb.png"/>
+<br></br>
+<img src="https://i.imgur.com/IKeBT6q.png"/>
+<br></br>
+<img src="https://i.imgur.com/iGpuktN.png"/>
+<br></br>
+<img src="https://i.imgur.com/ScCEAhB.png"/>
+<br></br>
+<img src="https://i.imgur.com/fGJVRMX.png"/>
+<br></br>
+<img src="https://i.imgur.com/76rQNRy.png"/>
 
 <h2>🖼 <a href="https://app.zeplin.io/project/5dd5ae92669af1bc817c8359/flow/620a92ee1e45cba61eac5bce">Design</a></h2>
 <p>• Design feito pela designer Camila Mizutani, elaborado no zeplin.</p>
