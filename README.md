@@ -41,4 +41,4 @@
 <p>• Design feito pela designer Camila Mizutani, elaborado no zeplin.</p>
 
 <h2>🔗 <a href="https://documenter.getpostman.com/view/7549981/SWTEdGtT">Api</a></h2>
-<p>• Api feita em nodeJs por instrutores da Labenu</p>
+<p>• Api feita em nodeJs por instrutores da Labenu.</p>
