@@ -11,6 +11,9 @@
 <p>•<a href="https://github.com/PauloJunior10"> Paulo</a></p>
 <p>•<a href="https://github.com/viniciusmarinho22"> Vinicius</a></p>
 
+<h2>🔗 Surge do projeto</h2>
+<p>https://nostalgic-fear.surge.sh/</p>
+
 <h2>⚙ Tecnologias utlizadas</h2>
 <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"/>
 <img src="https://img.shields.io/badge/Material--UI-0081CB?style=for-the-badge&logo=material-ui&logoColor=white"/>
